@@ -1,6 +1,6 @@
 package com.etco.exception;
 
-public class ObjectNotFoundException extends Exception {
+public class ObjectNotExistException extends Exception {
 
     private static final long serialVersionUID = 1L;
     
@@ -9,14 +9,14 @@ public class ObjectNotFoundException extends Exception {
     /**
      * コンストラクタ
      */
-    public ObjectNotFoundException() {
+    public ObjectNotExistException() {
         super(message);
     }
     
     /**
      * コンストラクタ
      */
-    public ObjectNotFoundException(String message) {
+    public ObjectNotExistException(String message) {
         super(message);
     }
 

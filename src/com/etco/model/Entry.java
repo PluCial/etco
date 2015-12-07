@@ -22,6 +22,11 @@ public class Entry implements Serializable {
     private Long version;
     
     /**
+     * 無効フラグ
+     */
+    private boolean invalid = false;
+    
+    /**
      * 作成日時
      */
     @Attribute(listener = CreationDate.class)
@@ -115,5 +120,13 @@ public class Entry implements Serializable {
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public boolean isInvalid() {
+        return invalid;
+    }
+
+    public void setInvalid(boolean invalid) {
+        this.invalid = invalid;
     }
 }

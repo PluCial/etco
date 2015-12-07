@@ -8,7 +8,7 @@ import org.slim3.datastore.Datastore;
 import org.slim3.util.StringUtil;
 
 import com.etco.dao.UserDao;
-import com.etco.exception.ObjectNotFoundException;
+import com.etco.exception.ObjectNotExistException;
 import com.etco.exception.TooManyException;
 import com.etco.meta.UserMeta;
 import com.etco.model.User;
@@ -59,7 +59,7 @@ public class UserService {
         try {
             model = MemcacheService.getUser(userId);
 
-        }catch(ObjectNotFoundException e) {
+        }catch(ObjectNotExistException e) {
             // DBから取得
             model = dao.getByUserId(userId);
             if(model == null) return null;

@@ -2,7 +2,7 @@ package com.etco.service;
 
 import org.slim3.memcache.Memcache;
 
-import com.etco.exception.ObjectNotFoundException;
+import com.etco.exception.ObjectNotExistException;
 import com.etco.model.User;
 
 
@@ -27,12 +27,12 @@ public class MemcacheService {
      * キャッシュからユーザー情報を取得
      * @param userId
      * @return
-     * @throws ObjectNotFoundException 
+     * @throws ObjectNotExistException 
      */
-    public static User getUser(String userId) throws ObjectNotFoundException {
+    public static User getUser(String userId) throws ObjectNotExistException {
         
         User user = Memcache.get(USER_INFO_MEMCACHE_KEY + "_" + userId);
-        if(user == null) throw new ObjectNotFoundException();
+        if(user == null) throw new ObjectNotExistException();
         
         return user;
     }
