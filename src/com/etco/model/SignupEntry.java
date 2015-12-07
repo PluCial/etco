@@ -8,7 +8,7 @@ import org.slim3.datastore.Model;
 import com.google.appengine.api.datastore.Email;
 
 /**
- * Client登録エントリー
+ * User登録エントリー
  * @author takahara
  *
  */

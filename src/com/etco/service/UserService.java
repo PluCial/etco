@@ -12,6 +12,7 @@ import com.etco.exception.ObjectNotExistException;
 import com.etco.exception.TooManyException;
 import com.etco.meta.UserMeta;
 import com.etco.model.User;
+import com.etco.validator.ArgumentException;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.Transaction;
 
@@ -24,10 +25,14 @@ public class UserService {
     /**
      * Get
      * @return
+     * @throws ObjectNotExistException 
      */
-    public static User getByEmail(String email) {
+    public static User getByEmail(String email) throws ObjectNotExistException {
         
-        return dao.getByEmail(email);
+        User model =  dao.getByEmail(email);
+        if(model == null) throw new ObjectNotExistException();
+        
+        return model;
     }
     
     /**
@@ -114,10 +119,11 @@ public class UserService {
         }
         
         // 既に存在しているかチェック
-        if(getByEmail(user.getEmail().getEmail()) != null) {
-            throw new TooManyException("このメールアドレスは既に登録されています。");
-        }
-        
+        try {
+            getByEmail(user.getEmail().getEmail());
+                throw new TooManyException("このメールアドレスは既に登録されています。");
+        } catch (ObjectNotExistException e) {}
+      
         // ユーザーモデルの設定
         // パスワードの暗号化
         user.setPassword(getCipherPassword(user.getUserId(), user.getPassword()));
@@ -154,6 +160,23 @@ public class UserService {
      */
     private static Key createKey() {
         return Datastore.allocateId(UserMeta.get());
+    }
+    
+    /**
+     * パスワードの変更
+     * @param model
+     * @param password
+     * @return
+     * @throws NoSuchAlgorithmException 
+     * @throws ArgumentException 
+     */
+    public static void updatePassword(User model, String password) throws NoSuchAlgorithmException, ArgumentException {
+        
+        if(model == null || StringUtil.isEmpty(password)) throw new ArgumentException();
+        
+        model.setPassword(getCipherPassword(model.getUserId(), password));
+        
+        dao.put(model);
     }
     
     /**
