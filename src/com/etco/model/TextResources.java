@@ -6,14 +6,16 @@ import java.util.Date;
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.CreationDate;
 import org.slim3.datastore.Model;
+import org.slim3.datastore.ModelRef;
 import org.slim3.datastore.ModificationDate;
+import org.slim3.util.StringUtil;
 
-import com.etco.enums.Template;
-import com.google.appengine.api.datastore.Email;
+import com.etco.Utils;
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.Text;
 
 @Model(schemaVersion = 1)
-public class User implements Serializable {
+public class TextResources implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -23,30 +25,15 @@ public class User implements Serializable {
     @Attribute(version = true)
     private Long version;
     
-    /** ユーザーID */
-    private String userId;
-    
     /**
-     * メールアドレス
-     */
-    private Email email;
-    
-    /**
-     * パスワード
+     * コンテンツ
      */
     @Attribute(unindexed = true)
-    private String password;
-    
-    /**
-     * テンプレート
-     */
-    private Template template;
-    
-    /**
-     * 無効フラグ
-     */
-    private boolean invalid = false;
-    
+    private Text content;
+
+    /** Userとの関連 */
+    private ModelRef<User> userRef = new ModelRef<User>(User.class);
+
     /**
      * 作成日時
      */
@@ -59,7 +46,23 @@ public class User implements Serializable {
     @Attribute(listener = ModificationDate.class)
     private Date updateDate;
     
+    public String getContentString() {
+        return content == null ? null : content.getValue();
+    }
     
+    /**
+     * 文字列を適切に変換してコンテンツにセットする
+     * @param str
+     */
+    public void setStringToContent(String content) {
+        if(StringUtil.isEmpty(content.trim())) throw new NullPointerException();
+        
+        // 前後の空白を削除
+        content = content.trim();
+
+        // 改行をすべて統一
+        this.content = new Text(Utils.unityIndention(content));
+    }
 
     /**
      * Returns the key.
@@ -118,7 +121,7 @@ public class User implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        User other = (User) obj;
+        TextResources other = (TextResources) obj;
         if (key == null) {
             if (other.key != null) {
                 return false;
@@ -129,28 +132,8 @@ public class User implements Serializable {
         return true;
     }
 
-    public Email getEmail() {
-        return email;
-    }
-
-    public void setEmail(Email email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public boolean isInvalid() {
-        return invalid;
-    }
-
-    public void setInvalid(boolean invalid) {
-        this.invalid = invalid;
+    public ModelRef<User> getUserRef() {
+        return userRef;
     }
 
     public Date getCreateDate() {
@@ -169,19 +152,11 @@ public class User implements Serializable {
         this.updateDate = updateDate;
     }
 
-    public Template getTemplate() {
-        return template;
+    public Text getContent() {
+        return content;
     }
 
-    public void setTemplate(Template template) {
-        this.template = template;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setContent(Text content) {
+        this.content = content;
     }
 }

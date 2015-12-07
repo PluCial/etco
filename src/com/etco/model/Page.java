@@ -28,6 +28,11 @@ public class Page implements Serializable {
      */
     private PageRole role;
     
+    /**
+     * ソート順
+     */
+    private double sortOrder;
+    
     /** Userとの関連 */
     private ModelRef<User> userRef = new ModelRef<User>(User.class);
     
@@ -150,5 +155,13 @@ public class Page implements Serializable {
 
     public void setRole(PageRole role) {
         this.role = role;
+    }
+
+    public double getSortOrder() {
+        return sortOrder;
+    }
+
+    public void setSortOrder(double sortOrder) {
+        this.sortOrder = sortOrder;
     }
 }

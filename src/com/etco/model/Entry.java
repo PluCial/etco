@@ -8,12 +8,10 @@ import org.slim3.datastore.CreationDate;
 import org.slim3.datastore.Model;
 import org.slim3.datastore.ModificationDate;
 
-import com.etco.enums.Template;
-import com.google.appengine.api.datastore.Email;
 import com.google.appengine.api.datastore.Key;
 
 @Model(schemaVersion = 1)
-public class User implements Serializable {
+public class Entry implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -22,30 +20,6 @@ public class User implements Serializable {
 
     @Attribute(version = true)
     private Long version;
-    
-    /** ユーザーID */
-    private String userId;
-    
-    /**
-     * メールアドレス
-     */
-    private Email email;
-    
-    /**
-     * パスワード
-     */
-    @Attribute(unindexed = true)
-    private String password;
-    
-    /**
-     * テンプレート
-     */
-    private Template template;
-    
-    /**
-     * 無効フラグ
-     */
-    private boolean invalid = false;
     
     /**
      * 作成日時
@@ -58,8 +32,6 @@ public class User implements Serializable {
      */
     @Attribute(listener = ModificationDate.class)
     private Date updateDate;
-    
-    
 
     /**
      * Returns the key.
@@ -118,7 +90,7 @@ public class User implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        User other = (User) obj;
+        Entry other = (Entry) obj;
         if (key == null) {
             if (other.key != null) {
                 return false;
@@ -127,30 +99,6 @@ public class User implements Serializable {
             return false;
         }
         return true;
-    }
-
-    public Email getEmail() {
-        return email;
-    }
-
-    public void setEmail(Email email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public boolean isInvalid() {
-        return invalid;
-    }
-
-    public void setInvalid(boolean invalid) {
-        this.invalid = invalid;
     }
 
     public Date getCreateDate() {
@@ -167,21 +115,5 @@ public class User implements Serializable {
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
-    }
-
-    public Template getTemplate() {
-        return template;
-    }
-
-    public void setTemplate(Template template) {
-        this.template = template;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
     }
 }

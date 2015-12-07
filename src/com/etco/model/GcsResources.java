@@ -3,17 +3,16 @@ package com.etco.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.google.appengine.api.datastore.Key;
+
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.CreationDate;
 import org.slim3.datastore.Model;
+import org.slim3.datastore.ModelRef;
 import org.slim3.datastore.ModificationDate;
 
-import com.etco.enums.Template;
-import com.google.appengine.api.datastore.Email;
-import com.google.appengine.api.datastore.Key;
-
 @Model(schemaVersion = 1)
-public class User implements Serializable {
+public class GcsResources implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -23,30 +22,28 @@ public class User implements Serializable {
     @Attribute(version = true)
     private Long version;
     
-    /** ユーザーID */
-    private String userId;
+    /** 幅 */
+    private int width = 0;
     
-    /**
-     * メールアドレス
-     */
-    private Email email;
+    /** 高さ */
+    private int height = 0;
     
-    /**
-     * パスワード
-     */
+    /** コンテントタイプ */
+    private String contentType;
+    
+    /** servingUrl */
     @Attribute(unindexed = true)
-    private String password;
+    private String servingUrl;
     
-    /**
-     * テンプレート
-     */
-    private Template template;
+    // ----------------------------------------------------------------------
+    // 関連
+    // ----------------------------------------------------------------------
+    /** Userとの関連 */
+    private ModelRef<User> userRef = new ModelRef<User>(User.class);
     
-    /**
-     * 無効フラグ
-     */
-    private boolean invalid = false;
-    
+    // ----------------------------------------------------------------------
+    // その他
+    // ----------------------------------------------------------------------
     /**
      * 作成日時
      */
@@ -58,8 +55,6 @@ public class User implements Serializable {
      */
     @Attribute(listener = ModificationDate.class)
     private Date updateDate;
-    
-    
 
     /**
      * Returns the key.
@@ -118,7 +113,7 @@ public class User implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        User other = (User) obj;
+        GcsResources other = (GcsResources) obj;
         if (key == null) {
             if (other.key != null) {
                 return false;
@@ -129,28 +124,8 @@ public class User implements Serializable {
         return true;
     }
 
-    public Email getEmail() {
-        return email;
-    }
-
-    public void setEmail(Email email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public boolean isInvalid() {
-        return invalid;
-    }
-
-    public void setInvalid(boolean invalid) {
-        this.invalid = invalid;
+    public ModelRef<User> getUserRef() {
+        return userRef;
     }
 
     public Date getCreateDate() {
@@ -169,19 +144,35 @@ public class User implements Serializable {
         this.updateDate = updateDate;
     }
 
-    public Template getTemplate() {
-        return template;
+    public int getWidth() {
+        return width;
     }
 
-    public void setTemplate(Template template) {
-        this.template = template;
+    public void setWidth(int width) {
+        this.width = width;
     }
 
-    public String getUserId() {
-        return userId;
+    public int getHeight() {
+        return height;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public String getContentType() {
+        return contentType;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
+    }
+
+    public String getServingUrl() {
+        return servingUrl;
+    }
+
+    public void setServingUrl(String servingUrl) {
+        this.servingUrl = servingUrl;
     }
 }
