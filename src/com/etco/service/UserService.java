@@ -13,6 +13,7 @@ import com.etco.exception.TooManyException;
 import com.etco.meta.UserMeta;
 import com.etco.model.User;
 import com.etco.validator.ArgumentException;
+import com.google.appengine.api.datastore.Email;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.Transaction;
 
@@ -46,8 +47,8 @@ public class UserService {
         User user = getByEmail(email);
         
         // メールもしくはパスワードが違っている場合
-        if(user == null || !user.getPassword().equals(getCipherPassword(user.getUserId(), password))) {
-            return null;
+        if(user == null || !user.getPassword().equals(getCipherPassword(user.getKey().getId(), password))) {
+            throw new ObjectNotExistException();
         }
         
         return user;
@@ -103,39 +104,40 @@ public class UserService {
      * @throws NoSuchAlgorithmException 
      */
     public static User add(
-            User user) throws NullPointerException, TooManyException, NoSuchAlgorithmException {
+            String name, String email, String password) throws NullPointerException, TooManyException, NoSuchAlgorithmException {
         
-        if(StringUtil.isEmpty(user.getUserId())
-                || user.getEmail() == null
-                || StringUtil.isEmpty(user.getPassword())
-                || user.getTemplate() == null
+        if(StringUtil.isEmpty(name)
+                || StringUtil.isEmpty(email)
+                || StringUtil.isEmpty(password)
                 ) {
             throw new NullPointerException("登録情報が不十分です");
         }
         
         // 既に存在しているかチェック
-        if(dao.getByUserId(user.getUserId()) != null) {
-            throw new TooManyException("このUserIdは既に利用されています。");
-        }
+//        if(dao.getByUserId(userId) != null) {
+//            throw new TooManyException("このUserIdは既に利用されています。");
+//        }
         
         // 既に存在しているかチェック
         try {
-            getByEmail(user.getEmail().getEmail());
+            getByEmail(email);
                 throw new TooManyException("このメールアドレスは既に登録されています。");
         } catch (ObjectNotExistException e) {}
       
         // ユーザーモデルの設定
         // パスワードの暗号化
-        user.setPassword(getCipherPassword(user.getUserId(), user.getPassword()));
+        User user = new User();
+        Key key = createKey();
+        user.setKey(key);
+        user.setName(name);
+        user.setEmail(new Email(email));
+        user.setPassword(getCipherPassword(key.getId(), password));
         
         // ---------------------------------------------------
         // 保存処理
         // ---------------------------------------------------
         Transaction tx = Datastore.beginTransaction();
         try {
-            // スポットキーの作成
-            Key userKey = createKey();
-            user.setKey(userKey);
             
             // ユーザー情報の登録
             Datastore.put(tx, user);
@@ -174,7 +176,7 @@ public class UserService {
         
         if(model == null || StringUtil.isEmpty(password)) throw new ArgumentException();
         
-        model.setPassword(getCipherPassword(model.getUserId(), password));
+        model.setPassword(getCipherPassword(model.getKey().getId(), password));
         
         dao.put(model);
     }
@@ -184,11 +186,11 @@ public class UserService {
      * @return
      * @throws NoSuchAlgorithmException 
      */
-    private static String getCipherPassword(String userId, String password) throws NoSuchAlgorithmException {
+    private static String getCipherPassword(long userId, String password) throws NoSuchAlgorithmException {
         StringBuilder buff = new StringBuilder();
         if (password != null && !password.isEmpty()) {
             MessageDigest md = MessageDigest.getInstance("SHA-1");
-            md.update(userId.getBytes());
+            md.update(String.valueOf(userId).getBytes());
             md.update(password.getBytes());
             byte[] digest = md.digest();
             for (byte d : digest) {

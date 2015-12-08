@@ -3,18 +3,18 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="f" uri="http://www.slim3.org/functions"%>
 <%@ page import="org.slim3.controller.validator.Errors" %>
-<%@ page import="com.guidebooq.App" %>
+<%@ page import="com.etco.App" %>
 <%
 Errors errors =(Errors) request.getAttribute("errors");
 %>
 <!DOCTYPE html>
 <html>
 	<head>
-		<jsp:include page="/client/include-parts/html_head.jsp" />
+		<jsp:include page="/app/include-parts-simple/html_head.jsp" />
 	</head>
 	<body class="lockscreen">
 		<div class="lockscreen-wrapper">
-			<jsp:include page="/client/include-parts/main_header.jsp" />
+			<jsp:include page="/app/include-parts-simple/main_header.jsp" />
 			
 
       		<h2 class="text-center"><i class="fa fa-warning text-yellow"></i> 404! Page not found.</h2>
@@ -26,8 +26,8 @@ Errors errors =(Errors) request.getAttribute("errors");
 			
 		</div><!-- /.login-box -->
 		
-		<jsp:include page="/client/include-parts/main_footer.jsp" />
+		<jsp:include page="/app/include-parts-simple/main_footer.jsp" />
 
-		<jsp:include page="/client/include-parts/html_script.jsp" />
+		<jsp:include page="/app/include-parts-simple/html_script.jsp" />
 	</body>
 </html>

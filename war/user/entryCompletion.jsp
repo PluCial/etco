@@ -2,29 +2,29 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="f" uri="http://www.slim3.org/functions"%>
-<%@ page import="org.slim3.controller.validator.Errors" %>
 <%@ page import="com.etco.App" %>
+<%@ page import="com.etco.enums.*" %>
 <%
-Errors errors =(Errors) request.getAttribute("errors");
+	EntryType entry =(EntryType) request.getAttribute("entry");
 %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<jsp:include page="/app/include-parts-simple/html_head.jsp" />
 	</head>
-	<body class="lockscreen">
-		<div class="lockscreen-wrapper">
-			<jsp:include page="/app/include-parts-simple/main_header.jsp" />
+	<body class="login-page">
+		<div class="login-box">
+			<div class="login-logo">
+				<a href="/"><b><%=App.APP_DISPLAY_NAME %></b></a>
+			</div><!-- /.login-logo -->
 			
-
-      		<h2 class="text-center"><i class="fa fa-warning text-yellow"></i> 500! Something went wrong.</h2>
-
-      
-			<div class="help-block text-center">
-				<p>We will work on fixing that right away. Meanwhile, you may return to <a href="/"><%=App.APP_DISPLAY_NAME %> Top</a>.</p>
-			</div>
-			
+			<div class="callout callout-info">
+               <h4><%=entry.getTitle() %></h4>
+               <p><%=entry.getMessege() %></p>
+            </div>
 		</div><!-- /.login-box -->
+		
+		
 		
 		<jsp:include page="/app/include-parts-simple/main_footer.jsp" />
 

@@ -2,6 +2,7 @@ package com.etco.controller.user;
 
 import org.slim3.controller.Navigation;
 import org.slim3.controller.validator.Validators;
+import org.slim3.util.StringUtil;
 
 import com.etco.exception.ObjectNotExistException;
 import com.etco.model.User;
@@ -22,6 +23,7 @@ public class LoginEntryController extends BaseController {
         String email = asString("email");
         String password = asString("password");
         
+        // ユーザーチェック
         User user = null;
         try {
             user = UserService.login(email, password);
@@ -36,6 +38,16 @@ public class LoginEntryController extends BaseController {
         
         // ログイン処理
         sessionScope("user", user);
+        
+        // ユーザーIDチェック
+        if(StringUtil.isEmpty(user.getUserId())) {
+            return redirect("/user/account/settingUserInfo");
+        }
+        
+        // テンプレートチェック
+        if(user.getTemplate() == null) {
+            return redirect("/user/account/settingTemplate");
+        }
         
         return redirect("/user/account/selectSpot");
     }

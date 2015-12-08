@@ -9,8 +9,8 @@ package com.etco.enums;
  *
  */
 public enum EntryType {
-    REGISTER("確認メールを送信しました！", "メールの指示に従ってアカウントの登録を完了してください。", "/user/account/addAccount"), 
-    RESET_PASSWORD("パスワード再設定メールを送信しました。", "メールの指示に従ってパスワードの再設定を行ってください。", "/user/account/settingPassword");
+    REGISTER("確認メールを送信しました！", "メールの指示に従ってアカウントの登録を完了してください。", "/user/addAccount"), 
+    RESET_PASSWORD("パスワード再設定メールを送信しました。", "メールの指示に従ってパスワードの再設定を行ってください。", "/user/settingPassword");
 
     private String title;
     private String messege;
