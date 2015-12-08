@@ -6,6 +6,11 @@ public class App {
     /** アプリケーション名 */
     public static final String APP_DISPLAY_NAME = "E.T.co";
     
+    /**
+     * 本番ドメイン
+     */
+    public static final String APP_PRODUCTION_DOMAIN = "e-t-co.com";
+    
     /** メール送信元アドレス */
     public static final String EMAIL_FROM_ADDRESS = "admin@e-t-co.com";
     
