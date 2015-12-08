@@ -33,7 +33,7 @@
 					<div class="col-md-12 col-sm-12">
 						<div class="faq-box">
 							<p>
-								株式会社プラシャル（以下、「弊社」といいます。）は、弊社が提供する<%=App.APP_DISPLAY_NAME %>(<a href="//<%=App.APP_PRODUCTION_DOMAIN %>"><%=App.APP_PRODUCTION_DOMAIN %></a>)（以下、「本サービス」といいます。）の会員登録について、以下のとおり利用規約（以下、「本利用規約」といいます。）を定めます。
+								<%=App.MANAGEMENT_COMPANY_NAME_JP %>（以下、「弊社」といいます。）は、弊社が提供する<%=App.APP_DISPLAY_NAME %>(<a href="//<%=App.APP_PRODUCTION_DOMAIN %>"><%=App.APP_PRODUCTION_DOMAIN %></a>)（以下、「本サービス」といいます。）の会員登録について、以下のとおり利用規約（以下、「本利用規約」といいます。）を定めます。
 								本サービスを利用するためには、本利用規約の全てに同意していただく必要があり、本サービスを利用したときは、本利用規約に同意したものとみなされるものとします。
 							</p>
 							</div>

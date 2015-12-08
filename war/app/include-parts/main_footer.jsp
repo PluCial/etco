@@ -38,7 +38,7 @@
 				<div class="col-md-12 text-center">
 							
 					<div class="copyright-info">
-         			&copy; Copyright PluCial, Inc. <span>All Rights Reserved</span>
+         			&copy; Copyright <%=App.MANAGEMENT_COMPANY_NAME %>. <span>All Rights Reserved</span>
         			</div>
 				</div>
 			</div><!--/ Row end -->

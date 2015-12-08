@@ -2,6 +2,7 @@ package com.etco.controller.user;
 
 import org.slim3.controller.Navigation;
 
+import com.etco.App;
 import com.etco.model.SignupEntry;
 import com.etco.model.User;
 import com.etco.service.SignupEntryService;
@@ -29,6 +30,6 @@ public class AddAccountController extends BaseController {
         SignupEntryService.delete(signupEntry);
         
         // ログイン後画面に遷移
-        return redirect("/user/account/settingUserInfo");
+        return redirect(App.USER_LOGIN_REDIRECT_URL);
     }
 }

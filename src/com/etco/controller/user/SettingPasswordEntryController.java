@@ -4,6 +4,7 @@ import org.slim3.controller.Navigation;
 import org.slim3.controller.validator.Validators;
 import org.slim3.util.StringUtil;
 
+import com.etco.App;
 import com.etco.exception.NoContentsException;
 import com.etco.model.ResetPasswordEntry;
 import com.etco.model.User;
@@ -51,7 +52,7 @@ public class SettingPasswordEntryController extends BaseController {
         // エントリー情報の削除
         SignupEntryService.delete(entry);
         
-        return redirect("/user/account/selectSpot");
+        return redirect(App.USER_LOGIN_REDIRECT_URL);
     }
     
     /**

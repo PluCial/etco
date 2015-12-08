@@ -17,6 +17,16 @@ public class App {
     /** メール送信元アドレス */
     public static final String EMAIL_CONTACT_TO_ADDRESS = "admin@e-t-co.com";
     
+    /**
+     * 運用会社名
+     */
+    public static final String MANAGEMENT_COMPANY_NAME = "KMS";
+    
+    /**
+     * 運用会社名
+     */
+    public static final String MANAGEMENT_COMPANY_NAME_JP = "株式会社KMS";
+    
     // ---------------------------------------------------------------------------
     // GOOGLE PROJECT 定数
     // ---------------------------------------------------------------------------
@@ -27,5 +37,7 @@ public class App {
     // 画面表示
     // ---------------------------------------------------
     public static final int ADMIN_USER_LIST_LIMIT = 300;
+    
+    public static final String USER_LOGIN_REDIRECT_URL = "/user/account/";
 
 }
