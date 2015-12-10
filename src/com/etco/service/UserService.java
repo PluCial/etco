@@ -59,20 +59,11 @@ public class UserService {
      * @param keyString
      * @return
      */
-    public static User getUser(String userId) {
+    public static User getUser(String hpId) {
         User model = null;
         
-        try {
-            model = MemcacheService.getUser(userId);
-
-        }catch(ObjectNotExistException e) {
-            // DBから取得
-            model = dao.getByUserId(userId);
-            if(model == null) return null;
-            
-            // キャッシュを追加
-            MemcacheService.addUser(model);
-        }
+        // DBから取得
+        model = dao.getByHpId(hpId);
         
         return model;
     }

@@ -31,16 +31,16 @@ public class UserDao extends DaoBase<User>{
      * ユーザーIDから取得
      * @return
      */
-    public User getByUserId(String userId) {
+    public User getByHpId(String userId) {
         return  Datastore.query(meta)
                 .filter(
-                    meta.userId.equal(userId),
+                    meta.hpId.equal(userId),
                     meta.invalid.equal(false)
                     ).asSingle();
     }
     
     /**
-     * ユーザーIDから取得
+     * ユーザーリスト
      * @return
      */
     public List<User> getList(int num) {

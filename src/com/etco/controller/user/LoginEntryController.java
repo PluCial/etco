@@ -41,7 +41,7 @@ public class LoginEntryController extends BaseController {
         sessionScope("user", user);
         
         // ユーザーIDチェック
-        if(StringUtil.isEmpty(user.getUserId())) {
+        if(StringUtil.isEmpty(user.getHpId())) {
             return redirect("/user/account/settingUserInfo");
         }
         

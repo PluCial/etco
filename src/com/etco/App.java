@@ -20,7 +20,7 @@ public class App {
     /**
      * 運用会社名
      */
-    public static final String MANAGEMENT_COMPANY_NAME = "KMS";
+    public static final String MANAGEMENT_COMPANY_NAME = "KMS inc";
     
     /**
      * 運用会社名

@@ -20,7 +20,7 @@ public class MemcacheService {
      * @param user
      */
     public static void addUser(User model) {
-        Memcache.put(USER_INFO_MEMCACHE_KEY + "_" + model.getUserId(), model);
+        Memcache.put(USER_INFO_MEMCACHE_KEY + "_" + model.getHpId(), model);
     }
     
     /**

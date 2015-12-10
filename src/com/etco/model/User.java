@@ -24,7 +24,7 @@ public class User implements Serializable {
     private Long version;
     
     /** ユーザーID */
-    private String userId;
+    private String hpId;
     
     /** ユーザー名 */
     private String name;
@@ -180,19 +180,19 @@ public class User implements Serializable {
         this.template = template;
     }
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getHpId() {
+        return hpId;
+    }
+
+    public void setHpId(String hpId) {
+        this.hpId = hpId;
     }
 }
