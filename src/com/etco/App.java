@@ -11,6 +11,11 @@ public class App {
      */
     public static final String APP_PRODUCTION_DOMAIN = "e-t-co.com";
     
+    /**
+     * 本番スキーム
+     */
+    public static final String APP_PRODUCTION_SCHEME = "https://";
+    
     /** メール送信元アドレス */
     public static final String EMAIL_FROM_ADDRESS = "admin@e-t-co.com";
     

@@ -23,8 +23,8 @@ public class User implements Serializable {
     @Attribute(version = true)
     private Long version;
     
-    /** ユーザーID */
-    private String hpId;
+    /** サイトID */
+    private String siteId;
     
     /** ユーザー名 */
     private String name;
@@ -41,8 +41,15 @@ public class User implements Serializable {
     private String password;
     
     /**
+     * サイト名
+     */
+    @Attribute(unindexed = true)
+    private String siteName;
+    
+    /**
      * テンプレート
      */
+    @Attribute(unindexed = true)
     private Template template;
     
     /**
@@ -188,11 +195,19 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    public String getHpId() {
-        return hpId;
+    public String getSiteId() {
+        return siteId;
     }
 
-    public void setHpId(String hpId) {
-        this.hpId = hpId;
+    public void setSiteId(String siteId) {
+        this.siteId = siteId;
+    }
+
+    public String getSiteName() {
+        return siteName;
+    }
+
+    public void setSiteName(String siteName) {
+        this.siteName = siteName;
     }
 }

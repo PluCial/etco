@@ -87,7 +87,7 @@ public class SearchUser {
         List<User> userList = new ArrayList<User>();
         for (ScoredDocument document : results) {
 
-            String userEmail = document.getOnlyField(SearchField.USER_EMAIL).getAtom();
+            String userEmail = document.getOnlyField(SearchField.USER_EMAIL).getText();
             
             if(!StringUtil.isEmpty(userEmail)) {
                 

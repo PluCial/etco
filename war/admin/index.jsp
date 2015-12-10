@@ -50,7 +50,7 @@ SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy'年'MM'月'dd'日'");
 										<td><%=user.getName() %></td>
 										<td><%=sdf1.format(user.getCreateDate()) %></td>
 										<td><%=user.getEmail().getEmail() %></td>
-										<td><a href="#">テストHP</a></td>
+										<td><a target="_blank" href="/+<%=user.getSiteId() %>"><%=user.getSiteName() %></a></td>
 									</tr>
 									<%} %>
                     

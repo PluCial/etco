@@ -28,13 +28,13 @@ public class UserDao extends DaoBase<User>{
     }
     
     /**
-     * ユーザーIDから取得
+     * サイトIDから取得
      * @return
      */
-    public User getByHpId(String userId) {
+    public User getBySiteId(String siteId) {
         return  Datastore.query(meta)
                 .filter(
-                    meta.hpId.equal(userId),
+                    meta.siteId.equal(siteId),
                     meta.invalid.equal(false)
                     ).asSingle();
     }

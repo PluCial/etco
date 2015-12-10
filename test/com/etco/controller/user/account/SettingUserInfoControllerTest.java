@@ -10,7 +10,7 @@ public class SettingUserInfoControllerTest extends ControllerTestCase {
     @Test
     public void run() throws Exception {
         tester.start("/user/account/settingUserInfo");
-        SettingUserInfoController controller = tester.getController();
+        SettingSiteInfoController controller = tester.getController();
         assertThat(controller, is(notNullValue()));
         assertThat(tester.isRedirect(), is(false));
         assertThat(tester.getDestinationPath(), is("/user/account/settingUserInfo.jsp"));

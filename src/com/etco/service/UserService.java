@@ -12,6 +12,7 @@ import com.etco.exception.ObjectNotExistException;
 import com.etco.exception.TooManyException;
 import com.etco.meta.UserMeta;
 import com.etco.model.User;
+import com.etco.search.SearchApi;
 import com.etco.validator.ArgumentException;
 import com.google.appengine.api.datastore.Email;
 import com.google.appengine.api.datastore.Key;
@@ -58,12 +59,14 @@ public class UserService {
      * ユーザー情報を取得
      * @param keyString
      * @return
+     * @throws ObjectNotExistException 
      */
-    public static User getUser(String hpId) {
+    public static User getBySiteId(String siteId) throws ObjectNotExistException {
         User model = null;
         
         // DBから取得
-        model = dao.getByHpId(hpId);
+        model = dao.getBySiteId(siteId);
+        if(model == null) throw new ObjectNotExistException();
         
         return model;
     }
@@ -105,11 +108,6 @@ public class UserService {
         }
         
         // 既に存在しているかチェック
-//        if(dao.getByUserId(userId) != null) {
-//            throw new TooManyException("このUserIdは既に利用されています。");
-//        }
-        
-        // 既に存在しているかチェック
         try {
             getByEmail(email);
                 throw new TooManyException("このメールアドレスは既に登録されています。");
@@ -132,8 +130,9 @@ public class UserService {
             
             // ユーザー情報の登録
             Datastore.put(tx, user);
-
-            //TODO: pageの生成
+            
+            // 検索APIの登録
+            SearchApi.putDocument(user);
 
             tx.commit();
 
@@ -144,6 +143,37 @@ public class UserService {
         }
         
         return user;
+    }
+    
+    /**
+     * サイトinfoの設定
+     * @param user
+     * @param siteId
+     * @param siteName
+     */
+    public static void settingSiteInfo(User user, String siteId, String siteName) {
+        user.setSiteId(siteId);
+        user.setSiteName(siteName);
+        
+        // ---------------------------------------------------
+        // 保存処理
+        // ---------------------------------------------------
+        Transaction tx = Datastore.beginTransaction();
+        try {
+            
+            // ユーザー情報の登録
+            Datastore.put(tx, user);
+            
+            // 検索APIの登録
+            SearchApi.putDocument(user);
+
+            tx.commit();
+
+        }finally {
+            if(tx.isActive()) {
+                tx.rollback();
+            }
+        }
     }
     
     /**

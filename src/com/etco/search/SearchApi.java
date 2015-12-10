@@ -73,7 +73,17 @@ public class SearchApi {
                     .setText(user.getName()))
                 .addField(Field.newBuilder()
                     .setName(SearchField.USER_EMAIL)
-                    .setText(user.getEmail().getEmail()));
+                    .setText(user.getEmail().getEmail()))
+                .addField(Field.newBuilder()
+                    .setName(SearchField.SITE_ID)
+                    .setAtom(user.getSiteId()))
+                .addField(Field.newBuilder()
+                        .setName(SearchField.SITE_NAME)
+                        .setText(user.getSiteName()))
+                .addField(Field.newBuilder()
+                    .setName(SearchField.TEMPLATE)
+                    .setAtom(user.getTemplate() == null? null : user.getTemplate().toString()));
+                    
                 
                 builder.addField(Field.newBuilder()
                     .setName(SearchField.CREATE_DATE)
