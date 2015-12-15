@@ -8,6 +8,7 @@ import org.slim3.datastore.Datastore;
 import org.slim3.util.StringUtil;
 
 import com.etco.dao.UserDao;
+import com.etco.enums.Template;
 import com.etco.exception.ObjectNotExistException;
 import com.etco.exception.TooManyException;
 import com.etco.meta.UserMeta;
@@ -154,6 +155,36 @@ public class UserService {
     public static void settingSiteInfo(User user, String siteId, String siteName) {
         user.setSiteId(siteId);
         user.setSiteName(siteName);
+        
+        // ---------------------------------------------------
+        // 保存処理
+        // ---------------------------------------------------
+        Transaction tx = Datastore.beginTransaction();
+        try {
+            
+            // ユーザー情報の登録
+            Datastore.put(tx, user);
+            
+            // 検索APIの登録
+            SearchApi.putDocument(user);
+
+            tx.commit();
+
+        }finally {
+            if(tx.isActive()) {
+                tx.rollback();
+            }
+        }
+    }
+    
+    /**
+     * サイトテンプレートの設定
+     * @param user
+     * @param siteId
+     * @param siteName
+     */
+    public static void settingTemplate(User user, Template template) {
+        user.setTemplate(template);
         
         // ---------------------------------------------------
         // 保存処理

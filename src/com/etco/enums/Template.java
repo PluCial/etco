@@ -9,8 +9,8 @@ package com.etco.enums;
  *
  */
 public enum Template {
-    T01("trend"), 
-    T02("corlate");
+    T001("trend"), 
+    T002("corlate");
 
     private String name;
 
