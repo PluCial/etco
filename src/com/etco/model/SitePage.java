@@ -13,7 +13,7 @@ import com.etco.enums.PageRole;
 import com.google.appengine.api.datastore.Key;
 
 @Model(schemaVersion = 1)
-public class Page implements Serializable {
+public class SitePage implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -22,6 +22,8 @@ public class Page implements Serializable {
 
     @Attribute(version = true)
     private Long version;
+    
+    private String name;
     
     /**
      * ページの役割
@@ -110,7 +112,7 @@ public class Page implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Page other = (Page) obj;
+        SitePage other = (SitePage) obj;
         if (key == null) {
             if (other.key != null) {
                 return false;
@@ -163,5 +165,13 @@ public class Page implements Serializable {
 
     public void setSortOrder(double sortOrder) {
         this.sortOrder = sortOrder;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

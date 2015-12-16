@@ -20,7 +20,7 @@ public abstract class BaseController extends AppBaseController {
 
         requestScope("isSmartPhone", String.valueOf(isSmartPhone()));
         requestScope("isLocal", String.valueOf(isLocal()));
-        requestScope("isClientLogged", String.valueOf(user != null));
+        requestScope("isEditMode", String.valueOf(user != null));
         requestScope("user", user);
 
         return execute(user);

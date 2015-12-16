@@ -7,7 +7,7 @@ import static org.hamcrest.CoreMatchers.*;
 
 public class PageTest extends AppEngineTestCase {
 
-    private Page model = new Page();
+    private SitePage model = new SitePage();
 
     @Test
     public void test() throws Exception {

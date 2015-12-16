@@ -18,7 +18,7 @@ public class PageTextRes extends TextResources implements Serializable {
     private PageTextRole role;
 
     /** Itemとの関連 */
-    private ModelRef<Page> pageRef = new ModelRef<Page>(Page.class);
+    private ModelRef<SitePage> pageRef = new ModelRef<SitePage>(SitePage.class);
 
     public PageTextRole getRole() {
         return role;
@@ -28,7 +28,7 @@ public class PageTextRes extends TextResources implements Serializable {
         this.role = role;
     }
 
-    public ModelRef<Page> getPageRef() {
+    public ModelRef<SitePage> getPageRef() {
         return pageRef;
     }
 

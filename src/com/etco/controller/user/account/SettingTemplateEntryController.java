@@ -45,7 +45,7 @@ public class SettingTemplateEntryController extends BaseController {
         
         
 
-        return redirect("/user/+" + user.getSiteId());
+        return redirect("/+" + user.getSiteId());
     }
     
     /**

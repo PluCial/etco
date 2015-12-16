@@ -4,7 +4,6 @@ import org.slim3.controller.Navigation;
 import org.slim3.controller.validator.Validators;
 import org.slim3.util.StringUtil;
 
-import com.etco.App;
 import com.etco.exception.ObjectNotExistException;
 import com.etco.model.User;
 import com.etco.service.UserService;
@@ -50,7 +49,7 @@ public class LoginEntryController extends BaseController {
             return redirect("/user/account/settingTemplate");
         }
         
-        return redirect(App.USER_LOGIN_REDIRECT_URL);
+        return redirect("/+" + user.getSiteId());
     }
     
     /**
