@@ -4,7 +4,7 @@
 <%@taglib prefix="f" uri="http://www.slim3.org/functions"%>
 <%@ page import="com.etco.App" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <jsp:include page="/template/T002/include-parts/html_head.jsp" />
 </head><!--/head-->

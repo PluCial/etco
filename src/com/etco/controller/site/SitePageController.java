@@ -27,6 +27,6 @@ public class SitePageController extends BaseController {
         }
         
         
-        return forward("/template/" + user.getTemplate().toString() + "index.jsp");
+        return forward("/template/" + user.getTemplate().toString() + "/" + sitePage.getRole().toString().toLowerCase() + ".jsp");
     }
 }

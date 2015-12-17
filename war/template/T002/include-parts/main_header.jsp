@@ -60,7 +60,7 @@ List<SitePage> pageList =(List<SitePage>) request.getAttribute("pageList");
                         <%} %>
                         
                         <%if(isEditMode) {%>
-                        <li><a href="/"><i class="fa fa-plus"></i></a></li>
+                        <li><a href="/user/account/addSitePage"><i class="fa fa-plus"></i></a></li>
                         <%} %>                   
                     </ul>
                 </div>
