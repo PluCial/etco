@@ -1,6 +1,7 @@
 package com.etco;
 
 import java.util.List;
+import java.util.Map;
 
 public class Utils {
     
@@ -150,6 +151,21 @@ public class Utils {
             }
         }
         return result.toString();
+    }
+    
+    /**
+     * マップからテキストリソースを取得
+     * @param map
+     * @param key
+     * @param defaultString
+     * @return
+     */
+    public static String getTextResFromMap(Map<String, String> map, String key, String defaultString) { 
+        if (map.containsKey(key)){
+            return map.get(key);
+        }
+        
+        return defaultString;
     }
 
 }

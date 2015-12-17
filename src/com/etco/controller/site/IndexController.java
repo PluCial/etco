@@ -21,6 +21,9 @@ public class IndexController extends BaseController {
         }catch(ObjectNotExistException e) {
             throw new NoContentsException();
         }
+
+        // リソースの設定
+        super.setRes(user, sitePage.getRole());
         
         
         return forward("/template/" + user.getTemplate().toString() + "/index.jsp");

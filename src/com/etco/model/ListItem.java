@@ -3,18 +3,16 @@ package com.etco.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.google.appengine.api.datastore.Key;
+
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.CreationDate;
 import org.slim3.datastore.Model;
 import org.slim3.datastore.ModelRef;
 import org.slim3.datastore.ModificationDate;
 
-import com.etco.enums.PageRole;
-import com.etco.enums.Template;
-import com.google.appengine.api.datastore.Key;
-
 @Model(schemaVersion = 1)
-public class SitePage implements Serializable {
+public class ListItem implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -24,30 +22,16 @@ public class SitePage implements Serializable {
     @Attribute(version = true)
     private Long version;
     
-    private String name;
+    /** Userとの関連 */
+    private ModelRef<User> userRef = new ModelRef<User>(User.class);
     
-    /**
-     * ページの役割
-     */
-    private PageRole role;
-    
-    /**
-     * テンプレート
-     */
-    private Template template;
+    /** リストタイプ */
+    private String listType;
     
     /**
      * ソート順
      */
     private double sortOrder;
-    
-    /** Userとの関連 */
-    private ModelRef<User> userRef = new ModelRef<User>(User.class);
-    
-    /**
-     * 公開済みフラグ
-     */
-    private boolean published = false;
     
     /**
      * 作成日時
@@ -118,7 +102,7 @@ public class SitePage implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        SitePage other = (SitePage) obj;
+        ListItem other = (ListItem) obj;
         if (key == null) {
             if (other.key != null) {
                 return false;
@@ -133,12 +117,12 @@ public class SitePage implements Serializable {
         return userRef;
     }
 
-    public boolean isPublished() {
-        return published;
+    public String getListType() {
+        return listType;
     }
 
-    public void setPublished(boolean published) {
-        this.published = published;
+    public void setListType(String listType) {
+        this.listType = listType;
     }
 
     public Date getCreateDate() {
@@ -157,35 +141,11 @@ public class SitePage implements Serializable {
         this.updateDate = updateDate;
     }
 
-    public PageRole getRole() {
-        return role;
-    }
-
-    public void setRole(PageRole role) {
-        this.role = role;
-    }
-
     public double getSortOrder() {
         return sortOrder;
     }
 
     public void setSortOrder(double sortOrder) {
         this.sortOrder = sortOrder;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Template getTemplate() {
-        return template;
-    }
-
-    public void setTemplate(Template template) {
-        this.template = template;
     }
 }

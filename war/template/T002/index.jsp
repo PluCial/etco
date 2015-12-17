@@ -3,6 +3,16 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="f" uri="http://www.slim3.org/functions"%>
 <%@ page import="com.etco.App" %>
+<%@ page import="com.etco.model.*" %>
+<%@ page import="com.etco.enums.*" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="com.etco.Utils" %>
+<%
+boolean isEditMode = Boolean.valueOf((String) request.getAttribute("isEditMode"));
+List<ListItem> serviceList =(List<ListItem>) request.getAttribute("serviceList");
+HashMap<String,String> textResMap =(HashMap<String,String>) request.getAttribute("textResMap");
+%>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -101,55 +111,26 @@
 
             <div class="row">
                 <div class="features">
-                    <div class="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
-                        <div class="feature-wrap">
-                            <i class="fa fa-cogs"></i>
-                            <h2>デザイン企画、制作</h2>
-                            <h3>サービスの簡易説明テキスト等入りますサービスの簡易説明テキスト等入ります</h3>
-                        </div>
-                    </div><!--/.col-md-4-->
-
-                    <div class="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
-                        <div class="feature-wrap">
-                            <i class="fa fa-cogs"></i>
-                            <h2>デザイン企画、制作</h2>
-                            <h3>サービスの簡易説明テキスト等入りますサービスの簡易説明テキスト等入ります</h3>
-                        </div>
-                    </div><!--/.col-md-4-->
-
-                    <div class="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
-                        <div class="feature-wrap">
-                            <i class="fa fa-cogs"></i>
-                            <h2>デザイン企画、制作</h2>
-                            <h3>サービスの簡易説明テキスト等入りますサービスの簡易説明テキスト等入ります</h3>
-                        </div>
-                    </div><!--/.col-md-4-->
                 
+                	<%for(ListItem item: serviceList) { %>
                     <div class="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
                         <div class="feature-wrap">
                             <i class="fa fa-cogs"></i>
-                            <h2>デザイン企画、制作</h2>
-                            <h3>サービスの簡易説明テキスト等入りますサービスの簡易説明テキスト等入ります</h3>
+                            <h2><%=Utils.getTextResFromMap(textResMap, item.getKey().getName() + "h2", "サービス詳細タイトル") %></h2>
+                            <h3><%=Utils.getTextResFromMap(textResMap, item.getKey().getName() + "h3", "サービスの簡易説明テキスト等入りますサービスの簡易説明テキスト等入ります") %></h3>
                         </div>
                     </div><!--/.col-md-4-->
+                    <%} %>
 
-                    <div class="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
-                        <div class="feature-wrap">
-                            <i class="fa fa-cogs"></i>
-                            <h2>デザイン企画、制作</h2>
-                            <h3>サービスの簡易説明テキスト等入りますサービスの簡易説明テキスト等入ります</h3>
-                        </div>
-                    </div><!--/.col-md-4-->
-
-                    <div class="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
-                        <div class="feature-wrap">
-                            <i class="fa fa-cogs"></i>
-                            <h2>デザイン企画、制作</h2>
-                            <h3>サービスの簡易説明テキスト等入りますサービスの簡易説明テキスト等入ります</h3>
-                        </div>
-                    </div><!--/.col-md-4-->
                 </div><!--/.services-->
-            </div><!--/.row-->    
+            </div><!--/.row-->
+            
+            <%if(isEditMode) { %>
+            <div class="text-center">
+            	<a href="/user/account/ajax/addListItemEntry?listType=serviceList" class="btn btn-default">追加</a>
+            </div>
+            <%} %>
+            
         </div><!--/.container-->
     </section><!--/#feature-->
 

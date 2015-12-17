@@ -23,9 +23,10 @@ public class PageDao extends DaoBase<SitePage>{
         return  Datastore.query(meta)
                 .filter(
                     meta.userRef.equal(user.getKey()),
+                    meta.template.equal(user.getTemplate()),
                     meta.published.equal(true)
                     )
-                    .sort(meta.sortOrder.asc)
+                    .sort(meta.sortOrder.asc, meta.createDate.asc)
                     .asList();
     }
     
@@ -37,6 +38,7 @@ public class PageDao extends DaoBase<SitePage>{
         return  Datastore.query(meta)
                 .filter(
                     meta.userRef.equal(user.getKey()),
+                    meta.template.equal(user.getTemplate()),
                     meta.role.equal(PageRole.INDEX)
                     )
                     .asSingle();
@@ -50,7 +52,8 @@ public class PageDao extends DaoBase<SitePage>{
         return  Datastore.query(meta)
                 .filter(
                     meta.userRef.equal(user.getKey()),
-                    meta.name.equal(name)
+                    meta.name.equal(name),
+                    meta.template.equal(user.getTemplate())
                     )
                     .asSingle();
     }

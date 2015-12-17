@@ -64,6 +64,12 @@ public class PageService {
         return sitePage;
     }
     
+    /**
+     * TOPページの取得
+     * @param user
+     * @return
+     * @throws ObjectNotExistException
+     */
     public static SitePage getIndexPage(User user) throws ObjectNotExistException {
         SitePage indexPage = dao.getIndexPage(user);
         if(indexPage == null) throw new ObjectNotExistException();
@@ -95,9 +101,10 @@ public class PageService {
         }catch(ObjectNotExistException e) {}
         
         SitePage sitePage = new SitePage();
-        sitePage.setKey(createKey());
+        sitePage.setKey(createKey(user));
         sitePage.setName(name);
         sitePage.setRole(role);
+        sitePage.setTemplate(user.getTemplate());
         sitePage.getUserRef().setModel(user);
         sitePage.setSortOrder(dao.getList(user).size() + 1);
         sitePage.setPublished(true);
@@ -164,10 +171,10 @@ public class PageService {
      * キーの作成
      * @return
      */
-    public static Key createKey() {
+    public static Key createKey(User user) {
         // キーを乱数にする
         UUID uniqueKey = UUID.randomUUID();
-        return createKey(uniqueKey.toString());
+        return createKey(user.getSiteId() + "_" + uniqueKey.toString());
     }
 
 }
