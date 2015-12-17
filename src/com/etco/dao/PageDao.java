@@ -5,7 +5,6 @@ import java.util.List;
 import org.slim3.datastore.DaoBase;
 import org.slim3.datastore.Datastore;
 
-import com.etco.enums.PageRole;
 import com.etco.meta.SitePageMeta;
 import com.etco.model.SitePage;
 import com.etco.model.User;
@@ -39,7 +38,7 @@ public class PageDao extends DaoBase<SitePage>{
                 .filter(
                     meta.userRef.equal(user.getKey()),
                     meta.template.equal(user.getTemplate()),
-                    meta.role.equal(PageRole.INDEX)
+                    meta.role.equal("index")
                     )
                     .asSingle();
     }

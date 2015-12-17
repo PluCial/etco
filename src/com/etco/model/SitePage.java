@@ -5,12 +5,13 @@ import java.util.Date;
 
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.CreationDate;
+import org.slim3.datastore.InverseModelListRef;
 import org.slim3.datastore.Model;
 import org.slim3.datastore.ModelRef;
 import org.slim3.datastore.ModificationDate;
 
-import com.etco.enums.PageRole;
 import com.etco.enums.Template;
+import com.etco.meta.TextResMeta;
 import com.google.appengine.api.datastore.Key;
 
 @Model(schemaVersion = 1)
@@ -29,7 +30,7 @@ public class SitePage implements Serializable {
     /**
      * ページの役割
      */
-    private PageRole role;
+    private String role;
     
     /**
      * テンプレート
@@ -60,6 +61,17 @@ public class SitePage implements Serializable {
      */
     @Attribute(listener = ModificationDate.class)
     private Date updateDate;
+    
+    // ----------------------------------------------------------------------
+    // 関連
+    // ----------------------------------------------------------------------
+    /** TextResとの関連 */
+    @Attribute(persistent = false)
+    private InverseModelListRef<TextRes, SitePage> textResListRef =
+            new InverseModelListRef<TextRes, SitePage>(
+                    TextRes.class,
+                    TextResMeta.get().sitePageRef.getName(),
+                    this);
 
     /**
      * Returns the key.
@@ -157,14 +169,6 @@ public class SitePage implements Serializable {
         this.updateDate = updateDate;
     }
 
-    public PageRole getRole() {
-        return role;
-    }
-
-    public void setRole(PageRole role) {
-        this.role = role;
-    }
-
     public double getSortOrder() {
         return sortOrder;
     }
@@ -187,5 +191,17 @@ public class SitePage implements Serializable {
 
     public void setTemplate(Template template) {
         this.template = template;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public InverseModelListRef<TextRes, SitePage> getTextResListRef() {
+        return textResListRef;
     }
 }

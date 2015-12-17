@@ -52,7 +52,7 @@ List<SitePage> pageList =(List<SitePage>) request.getAttribute("pageList");
                     	<%
                     		for(SitePage sitePage: pageList) {
                     	%>
-                    	<%if(sitePage.getRole().equals(PageRole.INDEX)) { %>
+                    	<%if(sitePage.getRole().equals("index")) { %>
                         <li><a href="/+<%=user.getSiteId() %>"><%=sitePage.getName() %></a></li>
                         <%}else { %>
                         <li><a href="/+<%=user.getSiteId() %>/<%=sitePage.getName() %>"><%=sitePage.getName() %></a></li>

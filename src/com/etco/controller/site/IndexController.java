@@ -23,7 +23,7 @@ public class IndexController extends BaseController {
         }
 
         // リソースの設定
-        super.setRes(user, sitePage.getRole());
+        super.setRes(user, sitePage);
         
         
         return forward("/template/" + user.getTemplate().toString() + "/index.jsp");

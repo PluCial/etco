@@ -15,7 +15,7 @@ import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.Text;
 
 @Model(schemaVersion = 1)
-public class TextResources implements Serializable {
+public class TextRes implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -26,6 +26,11 @@ public class TextResources implements Serializable {
     private Long version;
     
     /**
+     * リソースタイプ
+     */
+    private String resId;
+    
+    /**
      * コンテンツ
      */
     @Attribute(unindexed = true)
@@ -33,6 +38,12 @@ public class TextResources implements Serializable {
 
     /** Userとの関連 */
     private ModelRef<User> userRef = new ModelRef<User>(User.class);
+    
+    /** SitePageとの関連 */
+    private ModelRef<SitePage> sitePageRef = new ModelRef<SitePage>(SitePage.class);
+    
+    /** ListItemとの関連 */
+    private ModelRef<ListItem> listItemRef = new ModelRef<ListItem>(ListItem.class);
 
     /**
      * 作成日時
@@ -121,7 +132,7 @@ public class TextResources implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        TextResources other = (TextResources) obj;
+        TextRes other = (TextRes) obj;
         if (key == null) {
             if (other.key != null) {
                 return false;
@@ -158,5 +169,21 @@ public class TextResources implements Serializable {
 
     public void setContent(Text content) {
         this.content = content;
+    }
+
+    public ModelRef<SitePage> getSitePageRef() {
+        return sitePageRef;
+    }
+
+    public ModelRef<ListItem> getListItemRef() {
+        return listItemRef;
+    }
+
+    public String getResId() {
+        return resId;
+    }
+
+    public void setResId(String resId) {
+        this.resId = resId;
     }
 }

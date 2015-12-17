@@ -9,14 +9,17 @@
 <%@ page import="java.util.HashMap" %>
 <%@ page import="com.etco.Utils" %>
 <%
+SitePage sitePage = (SitePage) request.getAttribute("sitePage");
 boolean isEditMode = Boolean.valueOf((String) request.getAttribute("isEditMode"));
 List<ListItem> serviceList =(List<ListItem>) request.getAttribute("serviceList");
-HashMap<String,String> textResMap =(HashMap<String,String>) request.getAttribute("textResMap");
+HashMap<String,String> pageTextResMap =(HashMap<String,String>) request.getAttribute("pageTextResMap");
+HashMap<String,String> serviceListMap =(HashMap<String,String>) request.getAttribute("serviceListMap");
 %>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <jsp:include page="/template/T002/include-parts/html_head.jsp" />
+<!--     <link href="/user/account/ajax/modal.css" rel="stylesheet"> -->
 </head><!--/head-->
 
 <body class="homepage">
@@ -25,11 +28,11 @@ HashMap<String,String> textResMap =(HashMap<String,String>) request.getAttribute
 
     <section id="main-slider" class="no-margin">
         <div class="carousel slide">
-            <ol class="carousel-indicators">
+<!--             <ol class="carousel-indicators">
                 <li data-target="#main-slider" data-slide-to="0" class="active"></li>
                 <li data-target="#main-slider" data-slide-to="1"></li>
                 <li data-target="#main-slider" data-slide-to="2"></li>
-            </ol>
+            </ol> -->
             <div class="carousel-inner">
 
                 <div class="item active" style="background-image: url(/template/T002/images/slider/bg1.jpg)">
@@ -37,87 +40,121 @@ HashMap<String,String> textResMap =(HashMap<String,String>) request.getAttribute
                         <div class="row slide-margin">
                             <div class="col-sm-6">
                                 <div class="carousel-content">
-                                    <h1 class="animation animated-item-1">Kaleidoscope Media Service</h1>
-                                    <h2 class="animation animated-item-2">キャッチ的なテキストが入ります</h2>
-                                    <a class="btn-slide animation animated-item-3" href="#">Read More</a>
+                                    <h1 class="animation animated-item-1">
+                                    	<%if(isEditMode) { %>
+					                	<a data-toggle="modal" 
+											data-backdrop="static"
+											data-target="#textResModal" 
+											style="color: #fff;"
+											href="/user/account/ajax/editTextRes?editType=shortText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=t003">
+											<span id="<%=Utils.getResKeyString(sitePage.getKey().getName(), "t003") %>"><%=Utils.getTextResFromMap(pageTextResMap, sitePage.getKey().getName(), "t003", "Kaleidoscope Media Service") %></span>
+										</a>
+					                	<%}else { %>
+					                	<%=Utils.getTextResFromMap(pageTextResMap, sitePage.getKey().getName(), "t003", "Kaleidoscope Media Service") %>
+					                	<%} %>
+                                    </h1>
+                                    <h2 class="animation animated-item-2">
+                                    <%if(isEditMode) { %>
+					                	<a data-toggle="modal" 
+											data-backdrop="static"
+											data-target="#textResModal" 
+											style="color: #fff;"
+											href="/user/account/ajax/editTextRes?editType=shortText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=t004">
+											<span id="<%=Utils.getResKeyString(sitePage.getKey().getName(), "t004") %>"><%=Utils.getTextResFromMap(pageTextResMap, sitePage.getKey().getName(), "t004", "キャッチ的なテキストが入ります") %></span>
+										</a>
+					                	<%}else { %>
+					                	<%=Utils.getTextResFromMap(pageTextResMap, sitePage.getKey().getName(), "t004", "キャッチ的なテキストが入ります") %>
+					                	<%} %>
+                                    </h2>
                                 </div>
                             </div>
 
-                            <div class="col-sm-6 hidden-xs animation animated-item-4">
+<!--                             <div class="col-sm-6 hidden-xs animation animated-item-4">
                                 <div class="slider-img">
                                     <img src="/template/T002/images/slider/img1.png" class="img-responsive">
                                 </div>
-                            </div>
+                            </div> -->
 
                         </div>
                     </div>
                 </div><!--/.item-->
 
-                <div class="item" style="background-image: url(/template/T002/images/slider/bg2.jpg)">
-                    <div class="container">
-                        <div class="row slide-margin">
-                            <div class="col-sm-6">
-                                <div class="carousel-content">
-                                    <h1 class="animation animated-item-1">Kaleidoscope Media Service</h1>
-                                    <h2 class="animation animated-item-2">キャッチ的なテキストが入ります</h2>
-                                    <a class="btn-slide animation animated-item-3" href="#">Read More</a>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6 hidden-xs animation animated-item-4">
-                                <div class="slider-img">
-                                    <img src="/template/T002/images/slider/img2.png" class="img-responsive">
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div><!--/.item-->
-
-                <div class="item" style="background-image: url(/template/T002/images/slider/bg3.jpg)">
-                    <div class="container">
-                        <div class="row slide-margin">
-                            <div class="col-sm-6">
-                                <div class="carousel-content">
-                                    <h1 class="animation animated-item-1">Kaleidoscope Media Service</h1>
-                                    <h2 class="animation animated-item-2">キャッチ的なテキストが入ります</h2>
-                                    <a class="btn-slide animation animated-item-3" href="#">Read More</a>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 hidden-xs animation animated-item-4">
-                                <div class="slider-img">
-                                    <img src="/template/T002/images/slider/img3.png" class="img-responsive">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div><!--/.item-->
             </div><!--/.carousel-inner-->
         </div><!--/.carousel-->
-        <a class="prev hidden-xs" href="#main-slider" data-slide="prev">
+<!--         <a class="prev hidden-xs" href="#main-slider" data-slide="prev">
             <i class="fa fa-chevron-left"></i>
         </a>
         <a class="next hidden-xs" href="#main-slider" data-slide="next">
             <i class="fa fa-chevron-right"></i>
-        </a>
+        </a> -->
     </section><!--/#main-slider-->
 
     <section id="feature" >
         <div class="container">
            <div class="center wow fadeInDown">
-                <h2>サービス</h2>
-                <p class="lead">インターネット広告や紙媒体、モバイル端末向けの媒体販促ツールなどを含め広告にまつわるデザイン制作も請負い、プロモーションの全てを引き受け案件進行を行っております。 広告については成果検証を行い、クライアント様を必ずや成功に導くお手伝いをさせていただきます。</p>
+                <h2>
+                	<%if(isEditMode) { %>
+                	<a data-toggle="modal" 
+						data-backdrop="static"
+						data-target="#textResModal" 
+						style="color: #4e4e4e;"
+						href="/user/account/ajax/editTextRes?editType=shortText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=t000">
+						<span id="<%=Utils.getResKeyString(sitePage.getKey().getName(), "t000") %>"><%=Utils.getTextResFromMap(pageTextResMap, sitePage.getKey().getName(), "t000", "サービス") %></span>
+					</a>
+                	<%}else { %>
+                	<%=Utils.getTextResFromMap(pageTextResMap, sitePage.getKey().getName(), "t000", "サービス") %>
+                	<%} %>
+                </h2>
+                
+                <p class="lead">
+                	<%if(isEditMode) { %>
+					<a data-toggle="modal" 
+						data-backdrop="static"
+						data-target="#textResModal" 
+						class="lead"
+						style="color: #4e4e4e;"
+						href="/user/account/ajax/editTextRes?editType=longText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=t001">
+						<span id="<%=Utils.getResKeyString(sitePage.getKey().getName(), "t001") %>"><%=Utils.getTextResFromMap(pageTextResMap, sitePage.getKey().getName(), "t001", "インターネット広告や紙媒体、モバイル端末向けの媒体販促ツールなどを含め広告にまつわるデザイン制作も請負い、プロモーションの全てを引き受け案件進行を行っております。 広告については成果検証を行い、クライアント様を必ずや成功に導くお手伝いをさせていただきます。") %></span>
+					</a>
+					<%}else { %>
+					<%=Utils.getTextResFromMap(pageTextResMap, sitePage.getKey().getName(), "t001", "インターネット広告や紙媒体、モバイル端末向けの媒体販促ツールなどを含め広告にまつわるデザイン制作も請負い、プロモーションの全てを引き受け案件進行を行っております。 広告については成果検証を行い、クライアント様を必ずや成功に導くお手伝いをさせていただきます。") %>
+					<%} %>
+				</p>
             </div>
 
             <div class="row">
-                <div class="features">
+                <div class="features serviceListItem">
                 
                 	<%for(ListItem item: serviceList) { %>
                     <div class="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
                         <div class="feature-wrap">
                             <i class="fa fa-cogs"></i>
-                            <h2><%=Utils.getTextResFromMap(textResMap, item.getKey().getName() + "h2", "サービス詳細タイトル") %></h2>
-                            <h3><%=Utils.getTextResFromMap(textResMap, item.getKey().getName() + "h3", "サービスの簡易説明テキスト等入りますサービスの簡易説明テキスト等入ります") %></h3>
+                            <h2>
+                            	<%if(isEditMode) { %>
+								<a data-toggle="modal" 
+									data-backdrop="static"
+									data-target="#textResModal" 
+									style="color:#4e4e4e;"
+									href="/user/account/ajax/editTextRes?editType=shortText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=t001">
+									<span id="<%=Utils.getResKeyString(item.getKey().getName(), "t001") %>"><%=Utils.getTextResFromMap(serviceListMap, item.getKey().getName(), "t001", "サービス詳細") %></span>
+								</a>
+								<%}else { %>
+								<span><%=Utils.getTextResFromMap(serviceListMap, item.getKey().getName(), "t001", "サービス詳細") %></span>
+								<%} %>
+                            </h2>
+                            <h3>
+                            	<%if(isEditMode) { %>
+                            	<a data-toggle="modal" 
+									data-backdrop="static"
+									data-target="#textResModal" 
+									style="color:#787878;"
+									href="/user/account/ajax/editTextRes?editType=longText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=t002">
+									<span id="<%=Utils.getResKeyString(item.getKey().getName(), "t002") %>"><%=Utils.getTextResFromMap(serviceListMap, item.getKey().getName(), "t002", "サービスの簡易説明テキスト等入りますサービスの簡易説明テキスト等入ります") %></span>
+								</a>
+                            	<%}else { %>
+                            	<%=Utils.getTextResFromMap(serviceListMap, item.getKey().getName(), "t002", "サービスの簡易説明テキスト等入りますサービスの簡易説明テキスト等入ります") %>
+                            	<%} %>
+                            </h3>
                         </div>
                     </div><!--/.col-md-4-->
                     <%} %>
@@ -127,7 +164,7 @@ HashMap<String,String> textResMap =(HashMap<String,String>) request.getAttribute
             
             <%if(isEditMode) { %>
             <div class="text-center">
-            	<a href="/user/account/ajax/addListItemEntry?listType=serviceList" class="btn btn-default">追加</a>
+            	<a data-target="serviceListItem" href="/user/account/ajax/addListItemEntry?listType=serviceList" class="btn btn-default addListItem">追加</a>
             </div>
             <%} %>
             
@@ -228,5 +265,13 @@ HashMap<String,String> textResMap =(HashMap<String,String>) request.getAttribute
     <jsp:include page="/template/T002/include-parts/main_footer.jsp" />
 
     <jsp:include page="/template/T002/include-parts/html_script.jsp" />
+    
+    <%if(isEditMode) { %>
+	<!-- secure JS start -->
+	<jsp:include page="/user/account/ajax/dialog_modal.jsp">
+		<jsp:param name="modelId" value="textResModal" />
+	</jsp:include>
+	<!-- secure JS end -->
+	<%} %>
 </body>
 </html>

@@ -6,7 +6,6 @@ import java.util.UUID;
 import org.slim3.datastore.Datastore;
 
 import com.etco.dao.PageDao;
-import com.etco.enums.PageRole;
 import com.etco.exception.ObjectNotExistException;
 import com.etco.exception.TooManyException;
 import com.etco.meta.SitePageMeta;
@@ -41,7 +40,7 @@ public class PageService {
      * @return
      * @throws ObjectNotExistException
      */
-    public static SitePage getByKey(User user, String keyString) throws ObjectNotExistException {
+    public static SitePage getByKey(String keyString) throws ObjectNotExistException {
         SitePage sitePage = dao.get(createKey(keyString));
         if(sitePage == null) throw new ObjectNotExistException();
         
@@ -86,10 +85,10 @@ public class PageService {
      * @return
      * @throws TooManyException 
      */
-    protected static SitePage add(Transaction tx, User user, String name, PageRole role) throws TooManyException {
+    protected static SitePage add(Transaction tx, User user, String name, String role) throws TooManyException {
         
         // index Pageの重複チェック
-        if(role == PageRole.INDEX) {
+        if(role.equals("index")) {
             SitePage indexPage = dao.getIndexPage(user);
             if(indexPage != null) throw new TooManyException();
         }
@@ -122,7 +121,7 @@ public class PageService {
      * @return
      * @throws TooManyException 
      */
-    public static SitePage add(User user, String name, PageRole role) throws TooManyException {
+    public static SitePage add(User user, String name, String role) throws TooManyException {
 
         // ---------------------------------------------------
         // 保存処理

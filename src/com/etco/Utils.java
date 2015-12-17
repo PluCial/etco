@@ -153,6 +153,10 @@ public class Utils {
         return result.toString();
     }
     
+    public static String getResKeyString(String parentKey, String resId) {
+        return parentKey + "_" + resId;
+    }
+    
     /**
      * マップからテキストリソースを取得
      * @param map
@@ -160,9 +164,9 @@ public class Utils {
      * @param defaultString
      * @return
      */
-    public static String getTextResFromMap(Map<String, String> map, String key, String defaultString) { 
-        if (map.containsKey(key)){
-            return map.get(key);
+    public static String getTextResFromMap(Map<String, String> map, String parentKey, String resId, String defaultString) { 
+        if (map.containsKey(getResKeyString(parentKey, resId))){
+            return map.get(getResKeyString(parentKey, resId));
         }
         
         return defaultString;

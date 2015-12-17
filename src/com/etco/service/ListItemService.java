@@ -41,7 +41,7 @@ public class ListItemService {
      * @throws ObjectNotExistException
      */
     public static ListItem getByKey(String keyString) throws ObjectNotExistException {
-        ListItem item = dao.get(createKey(keyString));
+        ListItem item = dao.getOrNull(createKey(keyString));
         if(item == null) throw new ObjectNotExistException();
         
         return item;

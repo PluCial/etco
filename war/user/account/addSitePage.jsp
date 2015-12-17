@@ -7,6 +7,7 @@
 <%@ page import="com.etco.App" %>
 <%@ page import="com.etco.enums.*" %>
 <%@ page import="com.etco.model.*" %>
+<%@ page import="java.util.Map" %>
 <%
 Errors errors =(Errors) request.getAttribute("errors");
 User user =(User) request.getAttribute("user");
@@ -68,10 +69,10 @@ User user =(User) request.getAttribute("user");
 										
 										<select name="pageRole" class="form-control selectpicker">
 											<%
-												for(PageRole role: PageRole.values()) {
-													if(role != PageRole.INDEX) { 
+												for(Map.Entry<String, PageRoleModel> role: user.getTemplate().getPageRoleMap().entrySet()) {
+													if(!role.getKey().equals("index")) { 
 											%>
-											<option value="<%=role.toString() %>"><%=role.getName() %></option>
+											<option value="<%=role.getKey() %>"><%=role.getValue().getName() %></option>
 											<%} %>
 											<%} %>
 										</select>

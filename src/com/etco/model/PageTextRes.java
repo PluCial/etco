@@ -8,7 +8,7 @@ import org.slim3.datastore.ModelRef;
 import com.etco.enums.PageTextRole;
 
 @Model(schemaVersion = 1)
-public class PageTextRes extends TextResources implements Serializable {
+public class PageTextRes extends TextRes implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

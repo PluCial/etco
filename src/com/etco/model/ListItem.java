@@ -3,10 +3,12 @@ package com.etco.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.etco.meta.TextResMeta;
 import com.google.appengine.api.datastore.Key;
 
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.CreationDate;
+import org.slim3.datastore.InverseModelListRef;
 import org.slim3.datastore.Model;
 import org.slim3.datastore.ModelRef;
 import org.slim3.datastore.ModificationDate;
@@ -44,6 +46,17 @@ public class ListItem implements Serializable {
      */
     @Attribute(listener = ModificationDate.class)
     private Date updateDate;
+    
+    // ----------------------------------------------------------------------
+    // 関連
+    // ----------------------------------------------------------------------
+    /** TextResとの関連 */
+    @Attribute(persistent = false)
+    private InverseModelListRef<TextRes, ListItem> textResListRef =
+            new InverseModelListRef<TextRes, ListItem>(
+                    TextRes.class,
+                    TextResMeta.get().listItemRef.getName(),
+                    this);
 
     /**
      * Returns the key.
@@ -147,5 +160,9 @@ public class ListItem implements Serializable {
 
     public void setSortOrder(double sortOrder) {
         this.sortOrder = sortOrder;
+    }
+
+    public InverseModelListRef<TextRes, ListItem> getTextResListRef() {
+        return textResListRef;
     }
 }

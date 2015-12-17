@@ -8,12 +8,13 @@ import org.slim3.controller.Navigation;
 import org.slim3.util.StringUtil;
 
 import com.etco.controller.AppBaseController;
-import com.etco.enums.PageRole;
+import com.etco.enums.PageRoleModel;
 import com.etco.exception.NoContentsException;
 import com.etco.exception.NoLoginException;
 import com.etco.exception.ObjectNotExistException;
 import com.etco.model.ListItem;
 import com.etco.model.SitePage;
+import com.etco.model.TextRes;
 import com.etco.model.User;
 import com.etco.service.ListItemService;
 import com.etco.service.PageService;
@@ -81,18 +82,29 @@ public abstract class BaseController extends AppBaseController {
      * @param user
      * @param pageRole
      */
-    protected void setRes(User user, PageRole pageRole) {
-        HashMap<String,String> textResMap = new HashMap<String,String>();
-        
+    protected void setRes(User user, SitePage sitePage) {
+        PageRoleModel pageRole = user.getTemplate().getPageRoleMap().get(sitePage.getRole());
+
         for(String listType: pageRole.getListTypes()) {
+            HashMap<String,String> textResMap = new HashMap<String,String>();
             List<ListItem> list = setItemList(user, listType);
-         // TODO: リストアイテムのテキストリソース
-            System.out.println(list.size());
+            
+            for(ListItem listItem: list) {
+                List<TextRes> itemTextResList = listItem.getTextResListRef().getModelList();
+                
+                
+                for (TextRes res : itemTextResList) textResMap.put(res.getKey().getName(),res.getContentString());
+            }
+            
+            requestScope(listType + "Map", textResMap);
         }
         
-        // TODO: ページテキストリソース
-        
-        requestScope("textResMap", textResMap);
+
+        List<TextRes> pageTextResList = sitePage.getTextResListRef().getModelList();
+        HashMap<String,String> pageTextResMap = new HashMap<String,String>();
+        for (TextRes res : pageTextResList) pageTextResMap.put(res.getKey().getName(),res.getContentString());
+        System.out.println(pageTextResMap.toString());
+        requestScope("pageTextResMap", pageTextResMap);
     }
     
     /**

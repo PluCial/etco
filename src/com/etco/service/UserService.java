@@ -8,7 +8,6 @@ import org.slim3.datastore.Datastore;
 import org.slim3.util.StringUtil;
 
 import com.etco.dao.UserDao;
-import com.etco.enums.PageRole;
 import com.etco.enums.Template;
 import com.etco.exception.ObjectNotExistException;
 import com.etco.exception.TooManyException;
@@ -198,7 +197,7 @@ public class UserService {
             Datastore.put(tx, user);
             
             // index pageの作成
-            PageService.add(tx, user, "ホーム", PageRole.INDEX);
+            PageService.add(tx, user, "ホーム", "index");
             
             // 検索APIの登録
             SearchApi.putDocument(user);

@@ -4559,6 +4559,25 @@ site + pageId +templetId + 名</old>
                                   <type>Date</type>
                                   <isStatic>false</isStatic>
                                 </net.java.amateras.uml.classdiagram.model.AttributeModel>
+                                <net.java.amateras.uml.classdiagram.model.AttributeModel>
+                                  <backgroundColor reference="../../../backgroundColor"/>
+                                  <foregroundColor reference="../../../foregroundColor"/>
+                                  <showIcon>true</showIcon>
+                                  <parent class="net.java.amateras.uml.classdiagram.model.ClassModel" reference="../../.."/>
+                                  <listeners serialization="custom">
+                                    <java.beans.PropertyChangeSupport>
+                                      <default>
+                                        <source class="net.java.amateras.uml.classdiagram.model.AttributeModel" reference="../../../.."/>
+                                        <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>
+                                      </default>
+                                      <null/>
+                                    </java.beans.PropertyChangeSupport>
+                                  </listeners>
+                                  <visibility class="net.java.amateras.uml.classdiagram.model.Visibility$2"/>
+                                  <name>type</name>
+                                  <type>String</type>
+                                  <isStatic>false</isStatic>
+                                </net.java.amateras.uml.classdiagram.model.AttributeModel>
                               </children>
                               <filterProperty/>
                               <propertyDescriptors>
@@ -4846,7 +4865,7 @@ site + pageId +templetId + 名</old>
                               </java.beans.PropertyChangeSupport>
                             </listeners>
                             <visibility class="net.java.amateras.uml.classdiagram.model.Visibility$2"/>
-                            <name>key(siteId + itemType + 乱数)</name>
+                            <name>key(siteId + listType + 乱数)</name>
                             <type>Key</type>
                             <isStatic>false</isStatic>
                           </net.java.amateras.uml.classdiagram.model.AttributeModel>
