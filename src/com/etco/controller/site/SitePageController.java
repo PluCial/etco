@@ -26,6 +26,9 @@ public class SitePageController extends BaseController {
             throw new NoContentsException();
         }
         
+        // リソースの設定
+        super.setRes(user, sitePage);
+        
         
         return forward("/template/" + user.getTemplate().toString() + "/" + sitePage.getRole().toString().toLowerCase() + ".jsp");
     }
