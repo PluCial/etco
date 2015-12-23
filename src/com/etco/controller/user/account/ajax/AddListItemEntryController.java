@@ -7,6 +7,7 @@ import org.slim3.controller.validator.Validators;
 
 import com.etco.controller.user.account.BaseController;
 import com.etco.enums.ListItemType;
+import com.etco.exception.ObjectNotExistException;
 import com.etco.model.ListItem;
 import com.etco.model.User;
 import com.etco.service.ListItemService;
@@ -25,9 +26,14 @@ public class AddListItemEntryController extends BaseController {
         
         ListItem listItem = ListItemService.put(user, ListItemType.valueOf(listType));
         requestScope("listItem", listItem);
-        
-        List<ListItem> itemList = ListItemService.getListByType(user, listItemType);
-        requestScope("listSize", String.valueOf(itemList.size()));
+
+        try {
+            List<ListItem> itemList = ListItemService.getListByType(user, listItemType);
+            requestScope("listSize", String.valueOf(itemList.size()));
+
+        }catch(ObjectNotExistException e) {
+            requestScope("listSize", String.valueOf(0));
+        }
         
         return forward("/template/" + user.getTemplate().toString() + "/include-parts/" + listItemType.toString() + "_add_response.jsp");
     }

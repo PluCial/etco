@@ -1,8 +1,8 @@
-<!-- Indices written at Thu, 24 Dec 2015 01:44:35 JST -->
+<!-- Indices written at Thu, 24 Dec 2015 02:16:33 JST -->
 
 <datastore-indexes>
 
-    <!-- Used 30 times in query history -->
+    <!-- Used 9 times in query history -->
     <datastore-index kind="SitePage" ancestor="false" source="auto">
         <property name="published" direction="asc"/>
         <property name="template" direction="asc"/>
@@ -11,7 +11,7 @@
         <property name="createDate" direction="asc"/>
     </datastore-index>
 
-    <!-- Used 11 times in query history -->
+    <!-- Used 12 times in query history -->
     <datastore-index kind="ListItem" ancestor="false" source="auto">
         <property name="listItemType" direction="asc"/>
         <property name="userRef" direction="asc"/>
@@ -19,7 +19,7 @@
         <property name="createDate" direction="asc"/>
     </datastore-index>
 
-    <!-- Used 25 times in query history -->
+    <!-- Used 2 times in query history -->
     <datastore-index kind="ListItem" ancestor="false" source="auto">
         <property name="listItemType" direction="asc"/>
         <property name="userRef" direction="asc"/>

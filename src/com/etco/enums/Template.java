@@ -27,7 +27,7 @@ public enum Template {
                 private static final long serialVersionUID = 1L;
             {
                 put("index", new PageRoleModel("index", "ホーム", Arrays.asList(ListItemType.T001_001, ListItemType.T001_002)));
-                put("service", new PageRoleModel("service", "サービス", Arrays.asList(ListItemType.T001_001)));
+                put("service", new PageRoleModel("service", "サービス", Arrays.asList(ListItemType.T001_003)));
                 put("about", new PageRoleModel("about", "会社概要", null));
                 put("news", new PageRoleModel("news", "お知らせ", Arrays.asList(ListItemType.T001_002)));
                 put("contact", new PageRoleModel("contact", "お問い合わせ", null));
