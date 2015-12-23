@@ -1,30 +1,17 @@
 package com.etco.controller.user.account.ajax;
 
+import java.util.List;
+
 import org.slim3.controller.Navigation;
 import org.slim3.controller.validator.Validators;
 
 import com.etco.controller.user.account.BaseController;
+import com.etco.enums.ListItemType;
 import com.etco.model.ListItem;
 import com.etco.model.User;
 import com.etco.service.ListItemService;
 
 public class AddListItemEntryController extends BaseController {
-    
-//    @Override
-//    protected Navigation execute(User user) throws Exception {
-//        // 入力チェック
-//        if (!validate()) {
-//            requestScope("status", "NG");
-//            return forward("/user/account/ajax_response.jsp");
-//        }
-//        
-//        String listType = asString("listType");
-//        
-//        ListItemService.put(user, listType);
-//        
-//        requestScope("status", "OK");
-//        return forward("/user/account/ajax_response.jsp");
-//    }
     
     @Override
     protected Navigation execute(User user) throws Exception {
@@ -34,11 +21,15 @@ public class AddListItemEntryController extends BaseController {
         }
         
         String listType = asString("listType");
+        ListItemType listItemType = ListItemType.valueOf(listType);
         
-        ListItem listItem = ListItemService.put(user, listType);
+        ListItem listItem = ListItemService.put(user, ListItemType.valueOf(listType));
         requestScope("listItem", listItem);
         
-        return forward("/template/" + user.getTemplate().toString() + "/include-parts/" + listType + "_add_response.jsp");
+        List<ListItem> itemList = ListItemService.getListByType(user, listItemType);
+        requestScope("listSize", String.valueOf(itemList.size()));
+        
+        return forward("/template/" + user.getTemplate().toString() + "/include-parts/" + listItemType.toString() + "_add_response.jsp");
     }
     
     /**

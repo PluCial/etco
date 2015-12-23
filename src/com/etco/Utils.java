@@ -3,6 +3,9 @@ package com.etco;
 import java.util.List;
 import java.util.Map;
 
+import com.etco.enums.GcsResIds;
+import com.etco.enums.TextResIds;
+
 public class Utils {
     
     /**
@@ -153,8 +156,24 @@ public class Utils {
         return result.toString();
     }
     
-    public static String getResKeyString(String parentKey, String resId) {
-        return parentKey + "_" + resId;
+    /**
+     * リソースキーの取得
+     * @param parentKey
+     * @param resId
+     * @return
+     */
+    public static String getResKey(String parentKey, TextResIds resId) {
+        return parentKey + "_" + resId.toString();
+    }
+    
+    /**
+     * リソースキーの取得
+     * @param parentKey
+     * @param resId
+     * @return
+     */
+    public static String getResKey(String parentKey, GcsResIds resId) {
+        return parentKey + "_" + resId.toString();
     }
     
     /**
@@ -164,12 +183,27 @@ public class Utils {
      * @param defaultString
      * @return
      */
-    public static String getResFromMap(Map<String, String> map, String parentKey, String resId, String defaultString) { 
-        if (map.containsKey(getResKeyString(parentKey, resId))){
-            return map.get(getResKeyString(parentKey, resId));
+    public static String getResValue(Map<String, String> map, String parentKey, TextResIds resId) { 
+        if (map.containsKey(getResKey(parentKey, resId))){
+            return changeIndentionToHtml(map.get(getResKey(parentKey, resId)));
         }
         
-        return defaultString;
+        return changeIndentionToHtml(resId.getDefaultValue());
+    }
+    
+    /**
+     * マップからテキストリソースを取得
+     * @param map
+     * @param key
+     * @param defaultString
+     * @return
+     */
+    public static String getResValue(Map<String, String> map, String parentKey, GcsResIds resId) { 
+        if (map.containsKey(getResKey(parentKey, resId))){
+            return changeIndentionToHtml(map.get(getResKey(parentKey, resId)));
+        }
+        
+        return changeIndentionToHtml(resId.getDefaultValue());
     }
 
 }

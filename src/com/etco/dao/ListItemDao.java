@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.slim3.datastore.DaoBase;
 import org.slim3.datastore.Datastore;
+import org.slim3.datastore.ModelQuery;
 
+import com.etco.enums.ListItemType;
 import com.etco.meta.ListItemMeta;
 import com.etco.model.ListItem;
 import com.etco.model.User;
@@ -18,14 +20,16 @@ public class ListItemDao extends DaoBase<ListItem>{
      * リスト
      * @return
      */
-    public List<ListItem> getListByType(User user, String listType) {
-        return  Datastore.query(meta)
+    public List<ListItem> getListByType(User user, ListItemType listItemType) {
+        ModelQuery<ListItem> query = Datastore.query(meta)
                 .filter(
                     meta.userRef.equal(user.getKey()),
-                    meta.listType.equal(listType)
-                    )
-                    .sort(meta.sortOrder.asc, meta.createDate.asc)
-                    .asList();
+                    meta.listItemType.equal(listItemType)
+                        );
+
+        query.sort(listItemType.getSortCriterion());
+
+        return query.asList();
     }
 
 }

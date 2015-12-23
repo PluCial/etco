@@ -16,20 +16,20 @@ public enum Template {
         new HashMap<String, PageRoleModel>() {
             private static final long serialVersionUID = 1L;
         {
-            put("index", new PageRoleModel("index", "ホーム", Arrays.asList("mainSlider", "serviceList", "newsList")));
-            put("service", new PageRoleModel("service", "サービス", Arrays.asList("serviceList")));
+            put("index", new PageRoleModel("index", "ホーム", Arrays.asList(ListItemType.T001_001, ListItemType.T001_002)));
+            put("service", new PageRoleModel("service", "サービス", Arrays.asList(ListItemType.T001_001)));
             put("about", new PageRoleModel("about", "会社概要", null));
-            put("news", new PageRoleModel("news", "お知らせ", Arrays.asList("newsList")));
+            put("news", new PageRoleModel("news", "お知らせ", Arrays.asList(ListItemType.T001_002)));
             put("contact", new PageRoleModel("contact", "お問い合わせ", null));
         }}),
         T002("corlate", 
             new HashMap<String, PageRoleModel>() {
                 private static final long serialVersionUID = 1L;
             {
-                put("index", new PageRoleModel("index", "ホーム", Arrays.asList("mainSlider", "serviceList", "newsList")));
-                put("service", new PageRoleModel("service", "サービス", Arrays.asList("serviceList")));
+                put("index", new PageRoleModel("index", "ホーム", Arrays.asList(ListItemType.T001_001, ListItemType.T001_002)));
+                put("service", new PageRoleModel("service", "サービス", Arrays.asList(ListItemType.T001_001)));
                 put("about", new PageRoleModel("about", "会社概要", null));
-                put("news", new PageRoleModel("news", "お知らせ", Arrays.asList("newsList")));
+                put("news", new PageRoleModel("news", "お知らせ", Arrays.asList(ListItemType.T001_002)));
                 put("contact", new PageRoleModel("contact", "お問い合わせ", null));
             }}
     );

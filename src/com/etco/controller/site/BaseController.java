@@ -8,6 +8,7 @@ import org.slim3.controller.Navigation;
 import org.slim3.util.StringUtil;
 
 import com.etco.controller.AppBaseController;
+import com.etco.enums.ListItemType;
 import com.etco.enums.PageRoleModel;
 import com.etco.exception.NoContentsException;
 import com.etco.exception.NoLoginException;
@@ -66,14 +67,14 @@ public abstract class BaseController extends AppBaseController {
      * @param user
      * @param listType
      */
-    protected List<ListItem> setItemList(User user, String listType) {
+    protected List<ListItem> setItemList(User user, ListItemType listType) {
         List<ListItem> list = new ArrayList<ListItem>();
         try {
             list = ListItemService.getListByType(user, listType);
         } catch (ObjectNotExistException e) {
         }
         
-        requestScope(listType, list);
+        requestScope(listType.toString() + "ItemList", list);
         
         return list;
     }
@@ -86,7 +87,7 @@ public abstract class BaseController extends AppBaseController {
     protected void setRes(User user, SitePage sitePage) {
         PageRoleModel pageRole = user.getTemplate().getPageRoleMap().get(sitePage.getRole());
 
-        for(String listType: pageRole.getListTypes()) {
+        for(ListItemType listType: pageRole.getListTypes()) {
             HashMap<String,String> textResMap = new HashMap<String,String>();
             List<ListItem> list = setItemList(user, listType);
             

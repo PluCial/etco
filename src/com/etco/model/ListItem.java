@@ -3,15 +3,16 @@ package com.etco.model;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.etco.meta.TextResMeta;
-import com.google.appengine.api.datastore.Key;
-
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.CreationDate;
 import org.slim3.datastore.InverseModelListRef;
 import org.slim3.datastore.Model;
 import org.slim3.datastore.ModelRef;
 import org.slim3.datastore.ModificationDate;
+
+import com.etco.enums.ListItemType;
+import com.etco.meta.TextResMeta;
+import com.google.appengine.api.datastore.Key;
 
 @Model(schemaVersion = 1)
 public class ListItem implements Serializable {
@@ -28,7 +29,7 @@ public class ListItem implements Serializable {
     private ModelRef<User> userRef = new ModelRef<User>(User.class);
     
     /** リストタイプ */
-    private String listType;
+    private ListItemType listItemType;
     
     /**
      * ソート順
@@ -130,14 +131,6 @@ public class ListItem implements Serializable {
         return userRef;
     }
 
-    public String getListType() {
-        return listType;
-    }
-
-    public void setListType(String listType) {
-        this.listType = listType;
-    }
-
     public Date getCreateDate() {
         return createDate;
     }
@@ -164,5 +157,13 @@ public class ListItem implements Serializable {
 
     public InverseModelListRef<TextRes, ListItem> getTextResListRef() {
         return textResListRef;
+    }
+
+    public ListItemType getListItemType() {
+        return listItemType;
+    }
+
+    public void setListItemType(ListItemType listItemType) {
+        this.listItemType = listItemType;
     }
 }

@@ -11,6 +11,7 @@ import org.slim3.datastore.ModificationDate;
 import org.slim3.util.StringUtil;
 
 import com.etco.Utils;
+import com.etco.enums.TextResIds;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.Text;
 
@@ -28,7 +29,7 @@ public class TextRes implements Serializable {
     /**
      * リソースタイプ
      */
-    private String resId;
+    private TextResIds resId;
     
     /**
      * コンテンツ
@@ -179,11 +180,11 @@ public class TextRes implements Serializable {
         return listItemRef;
     }
 
-    public String getResId() {
+    public TextResIds getResId() {
         return resId;
     }
 
-    public void setResId(String resId) {
+    public void setResId(TextResIds resId) {
         this.resId = resId;
     }
 }

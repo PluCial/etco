@@ -4,6 +4,7 @@ import org.slim3.controller.Navigation;
 import org.slim3.controller.validator.Validators;
 
 import com.etco.controller.user.account.BaseController;
+import com.etco.enums.TextResIds;
 import com.etco.model.ListItem;
 import com.etco.model.SitePage;
 import com.etco.model.User;
@@ -29,11 +30,11 @@ public class EditTextResEntryController extends BaseController {
         if(objectType.equals("page")) {
             
             SitePage sitePage = PageService.getByKey(parentKey);
-            TextResService.put(user, sitePage, resId, asString("content"));
+            TextResService.put(user, sitePage, TextResIds.valueOf(resId), asString("content"));
             
         }else if(objectType.equals("listItem")) {
             ListItem listItem = ListItemService.getByKey(parentKey);
-            TextResService.put(user, listItem, resId, asString("content"));
+            TextResService.put(user, listItem, TextResIds.valueOf(resId), asString("content"));
         }
         
         requestScope("status", "OK");

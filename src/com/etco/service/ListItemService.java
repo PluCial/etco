@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.slim3.datastore.Datastore;
 
 import com.etco.dao.ListItemDao;
+import com.etco.enums.ListItemType;
 import com.etco.exception.ObjectNotExistException;
 import com.etco.exception.TooManyException;
 import com.etco.meta.ListItemMeta;
@@ -26,8 +27,8 @@ public class ListItemService {
      * @return
      * @throws ObjectNotExistException 
      */
-    public static List<ListItem> getListByType(User user, String listType) throws ObjectNotExistException {
-        List<ListItem> list = dao.getListByType(user, listType);
+    public static List<ListItem> getListByType(User user, ListItemType listItemType) throws ObjectNotExistException {
+        List<ListItem> list = dao.getListByType(user, listItemType);
         if(list == null || list.size() <= 0) throw new ObjectNotExistException();
 
         return list;
@@ -56,12 +57,12 @@ public class ListItemService {
      * @return
      * @throws TooManyException 
      */
-    protected static ListItem put(Transaction tx, User user, String listType) throws TooManyException {
+    protected static ListItem put(Transaction tx, User user, ListItemType listItemType) throws TooManyException {
         
         ListItem model = new ListItem();
-        model.setKey(createKey(user, listType));
+        model.setKey(createKey(user, listItemType));
         model.getUserRef().setModel(user);
-        model.setListType(listType);
+        model.setListItemType(listItemType);
         
         Datastore.put(tx, model);
         
@@ -76,7 +77,7 @@ public class ListItemService {
      * @return
      * @throws TooManyException 
      */
-    public static ListItem put(User user, String listType) throws TooManyException {
+    public static ListItem put(User user, ListItemType listItemType) throws TooManyException {
 
         // ---------------------------------------------------
         // 保存処理
@@ -85,7 +86,7 @@ public class ListItemService {
         Transaction tx = Datastore.beginTransaction();
         try {
 
-            model = put(tx, user, listType);
+            model = put(tx, user, listItemType);
 
             tx.commit();
 
@@ -114,10 +115,10 @@ public class ListItemService {
      * キーの作成
      * @return
      */
-    public static Key createKey(User user, String listType) {
+    public static Key createKey(User user, ListItemType listItemType) {
         // キーを乱数にする
         UUID uniqueKey = UUID.randomUUID();
-        return createKey(user.getSiteId() + "_" + listType + "_" + uniqueKey.toString());
+        return createKey(user.getSiteId() + "_" + listItemType.toString() + "_" + uniqueKey.toString());
     }
 
 }

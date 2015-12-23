@@ -3,6 +3,7 @@ package com.etco.controller.user.account.ajax;
 import org.slim3.controller.Navigation;
 
 import com.etco.controller.user.account.BaseController;
+import com.etco.enums.TextResIds;
 import com.etco.exception.ObjectNotExistException;
 import com.etco.model.ListItem;
 import com.etco.model.SitePage;
@@ -28,11 +29,11 @@ public class EditTextResController extends BaseController {
             if(objectType.equals("page")) {
 
                 SitePage sitePage = PageService.getByKey(parentKey);
-                textRes = TextResService.get(sitePage, resId);
+                textRes = TextResService.get(sitePage, TextResIds.valueOf(resId));
 
             }else if(objectType.equals("listItem")) {
                 ListItem listItem = ListItemService.getByKey(parentKey);
-                textRes = TextResService.get(listItem, resId);
+                textRes = TextResService.get(listItem, TextResIds.valueOf(resId));
             }
         }catch(ObjectNotExistException e) {}
         

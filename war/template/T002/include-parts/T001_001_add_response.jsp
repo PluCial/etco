@@ -16,8 +16,8 @@ ListItem item = (ListItem) request.getAttribute("listItem");
 									data-backdrop="static"
 									data-target="#textResModal" 
 									style="color:#4e4e4e;"
-									href="/user/account/ajax/editTextRes?editType=shortText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=t001">
-									<span id="<%=Utils.getResKeyString(item.getKey().getName(), "t001") %>">サービス詳細</span>
+									href="/user/account/ajax/editTextRes?editType=shortText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=<%=TextResIds.T001_LIST_ITEM_TYPE001_001.toString() %>">
+									<span id="<%=Utils.getResKey(item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE001_001) %>">サービス詳細</span>
 								</a>
                             </h2>
                             <h3>
@@ -25,8 +25,8 @@ ListItem item = (ListItem) request.getAttribute("listItem");
 									data-backdrop="static"
 									data-target="#textResModal" 
 									style="color:#787878;"
-									href="/user/account/ajax/editTextRes?editType=longText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=t002">
-									<span id="<%=Utils.getResKeyString(item.getKey().getName(), "t002") %>">サービスの簡易説明テキスト等入りますサービスの簡易説明テキスト等入ります</span>
+									href="/user/account/ajax/editTextRes?editType=longText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=<%=TextResIds.T001_LIST_ITEM_TYPE001_002.toString() %>">
+									<span id="<%=Utils.getResKey(item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE001_002) %>">サービスの簡易説明テキスト等入りますサービスの簡易説明テキスト等入ります</span>
 								</a>
                             </h3>
                         </div>

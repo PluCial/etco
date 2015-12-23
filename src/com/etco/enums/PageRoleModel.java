@@ -8,9 +8,9 @@ public class PageRoleModel {
     
     private String name;
     
-    private List<String> listTypes;
+    private List<ListItemType> listTypes;
     
-    public PageRoleModel(String key, String name, List<String> listTypes) {
+    public PageRoleModel(String key, String name, List<ListItemType> listTypes) {
         this.setKey(key);
         this.setName(name);
         this.setListTypes(listTypes);
@@ -32,11 +32,11 @@ public class PageRoleModel {
         this.name = name;
     }
 
-    public List<String> getListTypes() {
+    public List<ListItemType> getListTypes() {
         return listTypes;
     }
 
-    public void setListTypes(List<String> listTypes) {
+    public void setListTypes(List<ListItemType> listTypes) {
         this.listTypes = listTypes;
     }
 

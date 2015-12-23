@@ -14,6 +14,7 @@ String parentKey = (String) request.getAttribute("parentKey");
 String resId = (String) request.getAttribute("resId");
 
 TextRes textRes = (TextRes) request.getAttribute("textRes");
+TextResIds textResId = TextResIds.valueOf(resId);
 %>
 <!DOCTYPE html>
 <html>
@@ -36,9 +37,9 @@ TextRes textRes = (TextRes) request.getAttribute("textRes");
 		<div class="modal-body">
 			
 				<%if(editType.equals("shortText")) { %>
-				<input type="text" name="content" class="form-control" style="height: 40px;" value="<%=textRes == null ? "" : textRes.getContent().getValue() %>" />
+				<input type="text" name="content" class="form-control" style="height: 40px;" value="<%=textRes == null ? textResId.getDefaultValue() : textRes.getContent().getValue() %>" />
 				<%}else if(editType.equals("longText")) { %>
-				<textarea name="content" class="form-control" rows="10"><%=textRes == null ? "" : textRes.getContent().getValue() %></textarea>
+				<textarea name="content" class="form-control" rows="10"><%=textRes == null ? textResId.getDefaultValue() : textRes.getContent().getValue() %></textarea>
 				<%} %>
 		</div><!-- /modal-body -->
 		<div class="modal-footer">
@@ -47,7 +48,7 @@ TextRes textRes = (TextRes) request.getAttribute("textRes");
 		<input type="hidden" name="objectType" value="<%=objectType %>" />
 		<input type="hidden" name="parentKey" value="<%=parentKey %>" />
 		<input type="hidden" name="resId" value="<%=resId %>" />
-		<input type="hidden" name="resourcesKey" value="<%=Utils.getResKeyString(parentKey, resId) %>" />
+		<input type="hidden" name="resourcesKey" value="<%=Utils.getResKey(parentKey, textResId) %>" />
 	</form>
 </body>
 </html>

@@ -8,13 +8,18 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.HashMap" %>
 <%@ page import="com.etco.Utils" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%
 SitePage sitePage = (SitePage) request.getAttribute("sitePage");
 boolean isEditMode = Boolean.valueOf((String) request.getAttribute("isEditMode"));
-List<ListItem> serviceList =(List<ListItem>) request.getAttribute("serviceList");
+List<ListItem> serviceList =(List<ListItem>) request.getAttribute(ListItemType.T001_001.toString() + "ItemList");
+List<ListItem> newsList =(List<ListItem>) request.getAttribute(ListItemType.T001_002.toString() + "ItemList");
 HashMap<String,String> pageTextResMap =(HashMap<String,String>) request.getAttribute("pageTextResMap");
-HashMap<String,String> serviceListTextMap =(HashMap<String,String>) request.getAttribute("serviceListTextMap");
+HashMap<String,String> serviceListTextMap =(HashMap<String,String>) request.getAttribute(ListItemType.T001_001.toString() + "TextMap");
+HashMap<String,String> newsListTextMap =(HashMap<String,String>) request.getAttribute(ListItemType.T001_002.toString() + "TextMap");
 HashMap<String,String> pageGcsResMap =(HashMap<String,String>) request.getAttribute("pageGcsResMap");
+
+SimpleDateFormat newsSdf = new SimpleDateFormat("yyyy'年'MM'月'dd'日' HH'時'mm'分'");
 %>
 <!DOCTYPE html>
 <html lang="ja">
@@ -36,10 +41,10 @@ HashMap<String,String> pageGcsResMap =(HashMap<String,String>) request.getAttrib
             </ol> -->
             <div class="carousel-inner">
 
-                <div class="item active" style="background-image: url(<%=Utils.getResFromMap(pageGcsResMap, sitePage.getKey().getName(), "i001", "/template/T002/images/slider/bg1.jpg") %>)">
+                <div class="item active" style="background-image: url(<%=Utils.getResValue(pageGcsResMap, sitePage.getKey().getName(), GcsResIds.T001_001) %>)">
                 	<%if(isEditMode) { %>
 					                	<a  class="btn btn-default"
-											href="/user/account/editGcsRes?objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=i001">
+											href="/user/account/editGcsRes?objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=GcsResIds.T001_001.toString()%>">
 											画像の変更
 										</a>
 					                	<%}%>
@@ -53,11 +58,11 @@ HashMap<String,String> pageGcsResMap =(HashMap<String,String>) request.getAttrib
 											data-backdrop="static"
 											data-target="#textResModal" 
 											style="color: #fff;"
-											href="/user/account/ajax/editTextRes?editType=shortText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=t003">
-											<span id="<%=Utils.getResKeyString(sitePage.getKey().getName(), "t003") %>"><%=Utils.getResFromMap(pageTextResMap, sitePage.getKey().getName(), "t003", "Kaleidoscope Media Service") %></span>
+											href="/user/account/ajax/editTextRes?editType=shortText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=TextResIds.T001_001.toString()%>">
+											<span id="<%=Utils.getResKey(sitePage.getKey().getName(), TextResIds.T001_001)%>"><%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T001_001)%></span>
 										</a>
 					                	<%}else { %>
-					                	<%=Utils.getResFromMap(pageTextResMap, sitePage.getKey().getName(), "t003", "Kaleidoscope Media Service") %>
+					                	<%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T001_001) %>
 					                	<%} %>
                                     </h1>
                                     <h2 class="animation animated-item-2">
@@ -66,11 +71,11 @@ HashMap<String,String> pageGcsResMap =(HashMap<String,String>) request.getAttrib
 											data-backdrop="static"
 											data-target="#textResModal" 
 											style="color: #fff;"
-											href="/user/account/ajax/editTextRes?editType=shortText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=t004">
-											<span id="<%=Utils.getResKeyString(sitePage.getKey().getName(), "t004") %>"><%=Utils.getResFromMap(pageTextResMap, sitePage.getKey().getName(), "t004", "キャッチ的なテキストが入ります") %></span>
+											href="/user/account/ajax/editTextRes?editType=shortText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=TextResIds.T001_002.toString()%>">
+											<span id="<%=Utils.getResKey(sitePage.getKey().getName(), TextResIds.T001_002) %>"><%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T001_002) %></span>
 										</a>
 					                	<%}else { %>
-					                	<%=Utils.getResFromMap(pageTextResMap, sitePage.getKey().getName(), "t004", "キャッチ的なテキストが入ります") %>
+					                	<%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T001_002) %>
 					                	<%} %>
                                     </h2>
                                 </div>
@@ -105,11 +110,11 @@ HashMap<String,String> pageGcsResMap =(HashMap<String,String>) request.getAttrib
 						data-backdrop="static"
 						data-target="#textResModal" 
 						style="color: #4e4e4e;"
-						href="/user/account/ajax/editTextRes?editType=shortText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=t000">
-						<span id="<%=Utils.getResKeyString(sitePage.getKey().getName(), "t000") %>"><%=Utils.getResFromMap(pageTextResMap, sitePage.getKey().getName(), "t000", "サービス") %></span>
+						href="/user/account/ajax/editTextRes?editType=shortText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=TextResIds.T001_003.toString()%>">
+						<span id="<%=Utils.getResKey(sitePage.getKey().getName(), TextResIds.T001_003) %>"><%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T001_003) %></span>
 					</a>
                 	<%}else { %>
-                	<%=Utils.getResFromMap(pageTextResMap, sitePage.getKey().getName(), "t000", "サービス") %>
+                	<%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T001_003) %>
                 	<%} %>
                 </h2>
                 
@@ -120,11 +125,11 @@ HashMap<String,String> pageGcsResMap =(HashMap<String,String>) request.getAttrib
 						data-target="#textResModal" 
 						class="lead"
 						style="color: #4e4e4e;"
-						href="/user/account/ajax/editTextRes?editType=longText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=t001">
-						<span id="<%=Utils.getResKeyString(sitePage.getKey().getName(), "t001") %>"><%=Utils.getResFromMap(pageTextResMap, sitePage.getKey().getName(), "t001", "インターネット広告や紙媒体、モバイル端末向けの媒体販促ツールなどを含め広告にまつわるデザイン制作も請負い、プロモーションの全てを引き受け案件進行を行っております。 広告については成果検証を行い、クライアント様を必ずや成功に導くお手伝いをさせていただきます。") %></span>
+						href="/user/account/ajax/editTextRes?editType=longText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=TextResIds.T001_004.toString()%>">
+						<span id="<%=Utils.getResKey(sitePage.getKey().getName(), TextResIds.T001_004) %>"><%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T001_004) %></span>
 					</a>
 					<%}else { %>
-					<%=Utils.getResFromMap(pageTextResMap, sitePage.getKey().getName(), "t001", "インターネット広告や紙媒体、モバイル端末向けの媒体販促ツールなどを含め広告にまつわるデザイン制作も請負い、プロモーションの全てを引き受け案件進行を行っております。 広告については成果検証を行い、クライアント様を必ずや成功に導くお手伝いをさせていただきます。") %>
+					<%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T001_004) %>
 					<%} %>
 				</p>
             </div>
@@ -142,11 +147,11 @@ HashMap<String,String> pageGcsResMap =(HashMap<String,String>) request.getAttrib
 									data-backdrop="static"
 									data-target="#textResModal" 
 									style="color:#4e4e4e;"
-									href="/user/account/ajax/editTextRes?editType=shortText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=t001">
-									<span id="<%=Utils.getResKeyString(item.getKey().getName(), "t001") %>"><%=Utils.getResFromMap(serviceListTextMap, item.getKey().getName(), "t001", "サービス詳細") %></span>
+									href="/user/account/ajax/editTextRes?editType=shortText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=<%=TextResIds.T001_LIST_ITEM_TYPE001_001.toString()%>">
+									<span id="<%=Utils.getResKey(item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE001_001) %>"><%=Utils.getResValue(serviceListTextMap, item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE001_001) %></span>
 								</a>
 								<%}else { %>
-								<span><%=Utils.getResFromMap(serviceListTextMap, item.getKey().getName(), "t001", "サービス詳細") %></span>
+								<span><%=Utils.getResValue(serviceListTextMap, item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE001_001) %></span>
 								<%} %>
                             </h2>
                             <h3>
@@ -155,11 +160,11 @@ HashMap<String,String> pageGcsResMap =(HashMap<String,String>) request.getAttrib
 									data-backdrop="static"
 									data-target="#textResModal" 
 									style="color:#787878;"
-									href="/user/account/ajax/editTextRes?editType=longText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=t002">
-									<span id="<%=Utils.getResKeyString(item.getKey().getName(), "t002") %>"><%=Utils.getResFromMap(serviceListTextMap, item.getKey().getName(), "t002", "サービスの簡易説明テキスト等入りますサービスの簡易説明テキスト等入ります") %></span>
+									href="/user/account/ajax/editTextRes?editType=longText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=<%=TextResIds.T001_LIST_ITEM_TYPE001_002.toString()%>">
+									<span id="<%=Utils.getResKey(item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE001_002) %>"><%=Utils.getResValue(serviceListTextMap, item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE001_002) %></span>
 								</a>
                             	<%}else { %>
-                            	<%=Utils.getResFromMap(serviceListTextMap, item.getKey().getName(), "t002", "サービスの簡易説明テキスト等入りますサービスの簡易説明テキスト等入ります") %>
+                            	<%=Utils.getResValue(serviceListTextMap, item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE001_002) %>
                             	<%} %>
                             </h3>
                         </div>
@@ -171,7 +176,7 @@ HashMap<String,String> pageGcsResMap =(HashMap<String,String>) request.getAttrib
             
             <%if(isEditMode) { %>
             <div class="text-center">
-            	<a data-target="serviceListItem" href="/user/account/ajax/addListItemEntry?listType=serviceList" class="btn btn-default addListItem">追加</a>
+            	<a data-target="serviceListItem" href="/user/account/ajax/addListItemEntry?listType=<%=ListItemType.T001_001 %>" class="btn btn-default addListItem">追加</a>
             </div>
             <%} %>
             
@@ -185,87 +190,68 @@ HashMap<String,String> pageGcsResMap =(HashMap<String,String>) request.getAttrib
 
                 <div class="col-sm-12 wow fadeInDown">
                     <div class="accordion">
-                        <div class="center wow fadeInDown">
+                        <div class="center wow fadeInDown" style="padding-bottom:30px">
                             <h2>お知らせ</h2>
                         </div>
-                        <div class="panel-group" id="accordion1">
-                          <div class="panel panel-default">
-                            <div class="panel-heading active">
-                              <h3 class="panel-title">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1">
-                                  お知らせタイトル
-                                  <i class="fa fa-angle-right pull-right"></i>
-                                </a>
-                              </h3>
-                            </div>
+                        
+                        <%if(isEditMode) { %>
+						<div class="text-center" style="padding-bottom:30px">
+							<a data-target="newsListItem" data-insert-type="prepend" href="/user/account/ajax/addListItemEntry?listType=<%=ListItemType.T001_002 %>" class="btn btn-default addListItem">追加</a>
+						</div>
+						<%} %>
+                        
+                        <div class="panel-group newsListItem" id="accordion1">
 
-                            <div id="collapseOne1" class="panel-collapse collapse in">
-                              <div class="panel-body">
-                                  <div class="media accordion-inner">
-                                        <div class="pull-left">
-                                            <img class="img-responsive" src="images/accordion1.png">
-                                        </div>
-                                        <div class="media-body">
-                                             <h4>お知らせ</h4>
-                                             <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-                                        </div>
-                                  </div>
-                              </div>
-                            </div>
-                          </div>
+							<%for(int i=0; i < newsList.size(); i++) { 
+								ListItem item = (ListItem)newsList.get(i);
+							%>
+							<div class="panel panel-default">
+								<div class="panel-heading <%=i==0 ? "active" : "" %>">
+									<h3 class="panel-title">
+										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapse<%=i %>">
+											<%=newsSdf.format(item.getCreateDate()) %>
+											<i class="fa fa-angle-right pull-right"></i>
+										</a>
+									</h3>
+								</div>
+								<div id="collapse<%=i %>" class="panel-collapse collapse <%=i==0 ? "in" : "" %>">
+									<div class="panel-body">
+										<h4>
+											<%if(isEditMode) { %>
+											<a data-toggle="modal" 
+												data-backdrop="static"
+												data-target="#textResModal" 
+												style="color:#4e4e4e;"
+												href="/user/account/ajax/editTextRes?editType=shortText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=<%=TextResIds.T001_LIST_ITEM_TYPE002_001.toString()%>">
+												<span id="<%=Utils.getResKey(item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE002_001) %>"><%=Utils.getResValue(newsListTextMap, item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE002_001) %></span>
+											</a>
+											<%}else { %>
+											<span><%=Utils.getResValue(newsListTextMap, item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE002_001) %></span>
+											<%} %>
+										</h4>
+										<%if(isEditMode) { %>
+											<a data-toggle="modal" 
+												data-backdrop="static"
+												data-target="#textResModal" 
+												style="color:#858586;"
+												href="/user/account/ajax/editTextRes?editType=longText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=<%=TextResIds.T001_LIST_ITEM_TYPE002_002.toString()%>">
+												<span id="<%=Utils.getResKey(item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE002_002) %>"><%=Utils.getResValue(newsListTextMap, item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE002_002) %></span>
+											</a>
+											<%}else { %>
+											<span><%=Utils.getResValue(newsListTextMap, item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE002_002) %></span>
+											<%} %>
+									</div>
+								</div>
+							</div>
+							<%} %>
 
-                          <div class="panel panel-default">
-                            <div class="panel-heading">
-                              <h3 class="panel-title">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo1">
-                                  お知らせタイトル
-                                  <i class="fa fa-angle-right pull-right"></i>
-                                </a>
-                              </h3>
-                            </div>
-                            <div id="collapseTwo1" class="panel-collapse collapse">
-                              <div class="panel-body">
-                                テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="panel panel-default">
-                            <div class="panel-heading">
-                              <h3 class="panel-title">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseThree1">
-                                  お知らせタイトル
-                                  <i class="fa fa-angle-right pull-right"></i>
-                                </a>
-                              </h3>
-                            </div>
-                            <div id="collapseThree1" class="panel-collapse collapse">
-                              <div class="panel-body">
-                                テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="panel panel-default">
-                            <div class="panel-heading">
-                              <h3 class="panel-title">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseFour1">
-                                  お知らせタイトル
-                                  <i class="fa fa-angle-right pull-right"></i>
-                                </a>
-                              </h3>
-                            </div>
-                            <div id="collapseFour1" class="panel-collapse collapse">
-                              <div class="panel-body">
-                                テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-                              </div>
-                            </div>
-                          </div>
                         </div><!--/#accordion1-->
                     </div>
                 </div>
 
             </div><!--/.row-->
+            
+            
         </div><!--/.container-->
     </section><!--/#middle-->
 

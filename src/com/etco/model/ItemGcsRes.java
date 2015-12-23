@@ -5,7 +5,7 @@ import java.io.Serializable;
 import org.slim3.datastore.Model;
 import org.slim3.datastore.ModelRef;
 
-import com.etco.enums.PageGcsRole;
+import com.etco.enums.GcsResIds;
 
 @Model(schemaVersion = 1)
 public class ItemGcsRes extends GcsRes implements Serializable {
@@ -15,16 +15,16 @@ public class ItemGcsRes extends GcsRes implements Serializable {
     /**
      * 役割
      */
-    private PageGcsRole role;
+    private GcsResIds role;
     
     /** Itemとの関連 */
     private ModelRef<SitePage> pageRef = new ModelRef<SitePage>(SitePage.class);
 
-    public PageGcsRole getRole() {
+    public GcsResIds getRole() {
         return role;
     }
 
-    public void setRole(PageGcsRole role) {
+    public void setRole(GcsResIds role) {
         this.role = role;
     }
 
