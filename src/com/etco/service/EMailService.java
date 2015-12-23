@@ -10,7 +10,10 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.slim3.util.StringUtil;
+
 import com.etco.App;
+import com.etco.model.User;
 
 
 public class EMailService {
@@ -134,6 +137,49 @@ public class EMailService {
         message.append("◆ お問い合わせ本文 --- \n" + recipientMessage);
 
         send(App.EMAIL_CONTACT_TO_ADDRESS, recipientName, subject, message.toString(), isLocal);
+    }
+    
+    /**
+     * 問い合わせ完了メール
+     * @param recipientAddress
+     * @param recipientName
+     * @throws MessagingException 
+     * @throws UnsupportedEncodingException 
+     */
+    public static void siteContact(
+            User user,
+            String senderAddress, 
+            String senderName, 
+            String senderPhoneNumber,
+            String companyName,
+            String sendSubject, 
+            String sendMessage, 
+            boolean isLocal) throws UnsupportedEncodingException, MessagingException {
+        
+        // タイトル
+        String subject = "[" + App.APP_DISPLAY_NAME + "] " + sendSubject;
+        
+        // メッセージ
+        StringBuilder message = new StringBuilder();
+        message.append("◆ お問い合わせ");
+        message.append("\n");
+        message.append("-------------------------------------------------");
+        message.append("\n");
+        message.append("◇ 名前 --- " + (StringUtil.isEmpty(senderName) ? "" : senderName));
+        message.append("\n");
+        message.append("◇ メールアドレス --- " + (StringUtil.isEmpty(senderAddress) ? "" : senderAddress));
+        message.append("\n");
+        message.append("◇ 電話番号 --- " + (StringUtil.isEmpty(senderPhoneNumber) ? "" : senderPhoneNumber));
+        message.append("\n");
+        message.append("◇ 件名 --- " + (StringUtil.isEmpty(sendSubject) ? "" : sendSubject));
+        message.append("\n");
+        message.append("◇ 会社名 --- " + (StringUtil.isEmpty(companyName) ? "" : companyName));
+        message.append("\n");
+        message.append("-------------------------------------------------");
+        message.append("\n");
+        message.append("◆ お問い合わせ本文 --- \n" + sendMessage);
+
+        send(user.getEmail().getEmail(), App.APP_DISPLAY_NAME, subject, message.toString(), isLocal);
     }
     
     /**

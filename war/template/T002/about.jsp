@@ -3,10 +3,29 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="f" uri="http://www.slim3.org/functions"%>
 <%@ page import="com.etco.App" %>
+<%@ page import="com.etco.model.*" %>
+<%@ page import="com.etco.enums.*" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="com.etco.Utils" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%
+SitePage sitePage = (SitePage) request.getAttribute("sitePage");
+boolean isEditMode = Boolean.valueOf((String) request.getAttribute("isEditMode"));
+HashMap<String,String> pageTextResMap =(HashMap<String,String>) request.getAttribute("pageTextResMap");
+HashMap<String,String> pageGcsResMap =(HashMap<String,String>) request.getAttribute("pageGcsResMap");
+%>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <jsp:include page="/template/T002/include-parts/html_head.jsp" />
+<jsp:include page="/template/T002/include-parts/html_head.jsp" />
+<style>
+a.image-change {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}
+</style>
 </head><!--/head-->
 
 <body>
@@ -16,38 +35,50 @@
     <section id="about-us">
         <div class="container">
 			<div class="center wow fadeInDown">
-				<h2>会社情報</h2>
+				<h2>
+				<%if(isEditMode) { %>
+				<a data-toggle="modal" 
+					data-backdrop="static"
+					data-target="#textResModal" 
+					style="color: #4e4e4e;"
+					href="/user/account/ajax/editTextRes?editType=shortText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=TextResIds.T001_ABOUT_001.toString()%>">
+					<span id="<%=Utils.getResKey(sitePage.getKey().getName(), TextResIds.T001_ABOUT_001)%>"><%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T001_ABOUT_001)%></span>
+				</a>
+				<%}else { %>
+					<%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T001_ABOUT_001) %>
+				<%} %>
+				</h2>
 			</div>
 			
 			<!-- about us slider -->
 			<div id="about-slider">
 				<div id="carousel-slider" class="carousel slide" data-ride="carousel">
 					<!-- Indicators -->
-				  	<ol class="carousel-indicators visible-xs">
+				  	<!-- <ol class="carousel-indicators visible-xs">
 					    <li data-target="#carousel-slider" data-slide-to="0" class="active"></li>
 					    <li data-target="#carousel-slider" data-slide-to="1"></li>
 					    <li data-target="#carousel-slider" data-slide-to="2"></li>
-				  	</ol>
+				  	</ol> -->
 
 					<div class="carousel-inner">
 						<div class="item active">
-							<img src="images/slider_one.jpg" class="img-responsive" alt=""> 
-					   </div>
-					   <div class="item">
-							<img src="images/slider_one.jpg" class="img-responsive" alt=""> 
-					   </div> 
-					   <div class="item">
-							<img src="images/slider_one.jpg" class="img-responsive" alt=""> 
-					   </div> 
+							<img src="<%=Utils.getResValue(pageGcsResMap, sitePage.getKey().getName(), GcsResIds.T001_ABOUT_002) %>" class="img-responsive" alt="">
+							<%if(isEditMode) { %>
+							<a  class="btn btn-default image-change"
+								href="/user/account/editGcsRes?objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=GcsResIds.T001_ABOUT_002.toString()%>">
+								画像の変更
+							</a>
+							<%}%>
+					    </div>   
 					</div>
 					
-					<a class="left carousel-control hidden-xs" href="#carousel-slider" data-slide="prev">
+					<!-- <a class="left carousel-control hidden-xs" href="#carousel-slider" data-slide="prev">
 						<i class="fa fa-angle-left"></i> 
 					</a>
 					
 					<a class=" right carousel-control hidden-xs"href="#carousel-slider" data-slide="next">
 						<i class="fa fa-angle-right"></i> 
-					</a>
+					</a> -->
 				</div> <!--/#carousel-slider-->
 			</div><!--/#about-slider-->
 			
@@ -69,7 +100,19 @@
                         <ul class="row">
                             <li class="col-sm-9">
                                 <address>
-                                    <h5>COMPANY</h5>
+                                    <h5>
+                                    <%if(isEditMode) { %>
+									<a data-toggle="modal" 
+										data-backdrop="static"
+										data-target="#textResModal" 
+										style="color: #4e4e4e;"
+										href="/user/account/ajax/editTextRes?editType=shortText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=TextResIds.T001_ABOUT_002.toString()%>">
+										<span id="<%=Utils.getResKey(sitePage.getKey().getName(), TextResIds.T001_ABOUT_002)%>"><%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T001_ABOUT_002)%></span>
+									</a>
+									<%}else { %>
+									<%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T001_ABOUT_002) %>
+									<%} %>
+                                    </h5>
                                     <p>〒160-0004<br>東京都新宿区四谷4-3-3 FUKUYAビル2F-A</p>
                                     <p>TEL : 03-6380-6577<br>FAX : 03-6380-6581<br>
                                     Email : info@domain.com</p>
@@ -87,5 +130,13 @@
     <jsp:include page="/template/T002/include-parts/main_footer.jsp" />
 
     <jsp:include page="/template/T002/include-parts/html_script.jsp" />
+    
+    <%if(isEditMode) { %>
+	<!-- secure JS start -->
+	<jsp:include page="/user/account/ajax/dialog_modal.jsp">
+		<jsp:param name="modelId" value="textResModal" />
+	</jsp:include>
+	<!-- secure JS end -->
+	<%} %>
 </body>
 </html>

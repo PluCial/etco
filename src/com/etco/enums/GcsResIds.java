@@ -9,8 +9,8 @@ package com.etco.enums;
  *
  */
 public enum GcsResIds {
-    T001_001("/template/T002/images/slider/bg1.jpg")
-    ,T001_002("");
+    T001_INDEX_001("/template/T002/images/slider/bg1.jpg")
+    ,T001_ABOUT_002("/template/T002/images/slider_one.jpg");
     
     private String defaultValue;
     

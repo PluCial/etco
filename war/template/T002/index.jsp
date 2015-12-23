@@ -24,7 +24,14 @@ SimpleDateFormat newsSdf = new SimpleDateFormat("yyyy'年'MM'月'dd'日' HH'時'
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <jsp:include page="/template/T002/include-parts/html_head.jsp" />
+<jsp:include page="/template/T002/include-parts/html_head.jsp" />
+<style>
+a.image-change {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}
+</style>
 </head><!--/head-->
 
 <body class="homepage">
@@ -40,13 +47,14 @@ SimpleDateFormat newsSdf = new SimpleDateFormat("yyyy'年'MM'月'dd'日' HH'時'
             </ol> -->
             <div class="carousel-inner">
 
-                <div class="item active" style="background-image: url(<%=Utils.getResValue(pageGcsResMap, sitePage.getKey().getName(), GcsResIds.T001_001) %>)">
+                <div class="item active" style="background-image: url(<%=Utils.getResValue(pageGcsResMap, sitePage.getKey().getName(), GcsResIds.T001_INDEX_001) %>)">
                 	<%if(isEditMode) { %>
-					                	<a  class="btn btn-default"
-											href="/user/account/editGcsRes?objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=GcsResIds.T001_001.toString()%>">
-											画像の変更
-										</a>
-					                	<%}%>
+					<a  class="btn btn-default image-change"
+						href="/user/account/editGcsRes?objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=GcsResIds.T001_INDEX_001.toString()%>">
+						画像の変更
+					</a>
+					<%}%>
+					
                     <div class="container">
                         <div class="row slide-margin">
                             <div class="col-sm-6">

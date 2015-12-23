@@ -87,18 +87,20 @@ public abstract class BaseController extends AppBaseController {
     protected void setRes(User user, SitePage sitePage) {
         PageRoleModel pageRole = user.getTemplate().getPageRoleMap().get(sitePage.getRole());
 
-        for(ListItemType listType: pageRole.getListTypes()) {
-            HashMap<String,String> textResMap = new HashMap<String,String>();
-            List<ListItem> list = setItemList(user, listType);
-            
-            for(ListItem listItem: list) {
-                List<TextRes> itemTextResList = listItem.getTextResListRef().getModelList();
-                
-                
-                for (TextRes res : itemTextResList) textResMap.put(res.getKey().getName(),res.getContentString());
+        if(pageRole.getListTypes() != null) {
+            for(ListItemType listType: pageRole.getListTypes()) {
+                HashMap<String,String> textResMap = new HashMap<String,String>();
+                List<ListItem> list = setItemList(user, listType);
+
+                for(ListItem listItem: list) {
+                    List<TextRes> itemTextResList = listItem.getTextResListRef().getModelList();
+
+
+                    for (TextRes res : itemTextResList) textResMap.put(res.getKey().getName(),res.getContentString());
+                }
+
+                requestScope(listType + "TextMap", textResMap);
             }
-            
-            requestScope(listType + "TextMap", textResMap);
         }
         
 
