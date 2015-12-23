@@ -13,7 +13,8 @@ SitePage sitePage = (SitePage) request.getAttribute("sitePage");
 boolean isEditMode = Boolean.valueOf((String) request.getAttribute("isEditMode"));
 List<ListItem> serviceList =(List<ListItem>) request.getAttribute("serviceList");
 HashMap<String,String> pageTextResMap =(HashMap<String,String>) request.getAttribute("pageTextResMap");
-HashMap<String,String> serviceListMap =(HashMap<String,String>) request.getAttribute("serviceListMap");
+HashMap<String,String> serviceListTextMap =(HashMap<String,String>) request.getAttribute("serviceListTextMap");
+HashMap<String,String> pageGcsResMap =(HashMap<String,String>) request.getAttribute("pageGcsResMap");
 %>
 <!DOCTYPE html>
 <html lang="ja">
@@ -35,7 +36,13 @@ HashMap<String,String> serviceListMap =(HashMap<String,String>) request.getAttri
             </ol> -->
             <div class="carousel-inner">
 
-                <div class="item active" style="background-image: url(/template/T002/images/slider/bg1.jpg)">
+                <div class="item active" style="background-image: url(<%=Utils.getResFromMap(pageGcsResMap, sitePage.getKey().getName(), "i001", "/template/T002/images/slider/bg1.jpg") %>)">
+                	<%if(isEditMode) { %>
+					                	<a  class="btn btn-default"
+											href="/user/account/editGcsRes?objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=i001">
+											画像の変更
+										</a>
+					                	<%}%>
                     <div class="container">
                         <div class="row slide-margin">
                             <div class="col-sm-6">
@@ -47,10 +54,10 @@ HashMap<String,String> serviceListMap =(HashMap<String,String>) request.getAttri
 											data-target="#textResModal" 
 											style="color: #fff;"
 											href="/user/account/ajax/editTextRes?editType=shortText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=t003">
-											<span id="<%=Utils.getResKeyString(sitePage.getKey().getName(), "t003") %>"><%=Utils.getTextResFromMap(pageTextResMap, sitePage.getKey().getName(), "t003", "Kaleidoscope Media Service") %></span>
+											<span id="<%=Utils.getResKeyString(sitePage.getKey().getName(), "t003") %>"><%=Utils.getResFromMap(pageTextResMap, sitePage.getKey().getName(), "t003", "Kaleidoscope Media Service") %></span>
 										</a>
 					                	<%}else { %>
-					                	<%=Utils.getTextResFromMap(pageTextResMap, sitePage.getKey().getName(), "t003", "Kaleidoscope Media Service") %>
+					                	<%=Utils.getResFromMap(pageTextResMap, sitePage.getKey().getName(), "t003", "Kaleidoscope Media Service") %>
 					                	<%} %>
                                     </h1>
                                     <h2 class="animation animated-item-2">
@@ -60,10 +67,10 @@ HashMap<String,String> serviceListMap =(HashMap<String,String>) request.getAttri
 											data-target="#textResModal" 
 											style="color: #fff;"
 											href="/user/account/ajax/editTextRes?editType=shortText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=t004">
-											<span id="<%=Utils.getResKeyString(sitePage.getKey().getName(), "t004") %>"><%=Utils.getTextResFromMap(pageTextResMap, sitePage.getKey().getName(), "t004", "キャッチ的なテキストが入ります") %></span>
+											<span id="<%=Utils.getResKeyString(sitePage.getKey().getName(), "t004") %>"><%=Utils.getResFromMap(pageTextResMap, sitePage.getKey().getName(), "t004", "キャッチ的なテキストが入ります") %></span>
 										</a>
 					                	<%}else { %>
-					                	<%=Utils.getTextResFromMap(pageTextResMap, sitePage.getKey().getName(), "t004", "キャッチ的なテキストが入ります") %>
+					                	<%=Utils.getResFromMap(pageTextResMap, sitePage.getKey().getName(), "t004", "キャッチ的なテキストが入ります") %>
 					                	<%} %>
                                     </h2>
                                 </div>
@@ -99,10 +106,10 @@ HashMap<String,String> serviceListMap =(HashMap<String,String>) request.getAttri
 						data-target="#textResModal" 
 						style="color: #4e4e4e;"
 						href="/user/account/ajax/editTextRes?editType=shortText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=t000">
-						<span id="<%=Utils.getResKeyString(sitePage.getKey().getName(), "t000") %>"><%=Utils.getTextResFromMap(pageTextResMap, sitePage.getKey().getName(), "t000", "サービス") %></span>
+						<span id="<%=Utils.getResKeyString(sitePage.getKey().getName(), "t000") %>"><%=Utils.getResFromMap(pageTextResMap, sitePage.getKey().getName(), "t000", "サービス") %></span>
 					</a>
                 	<%}else { %>
-                	<%=Utils.getTextResFromMap(pageTextResMap, sitePage.getKey().getName(), "t000", "サービス") %>
+                	<%=Utils.getResFromMap(pageTextResMap, sitePage.getKey().getName(), "t000", "サービス") %>
                 	<%} %>
                 </h2>
                 
@@ -114,10 +121,10 @@ HashMap<String,String> serviceListMap =(HashMap<String,String>) request.getAttri
 						class="lead"
 						style="color: #4e4e4e;"
 						href="/user/account/ajax/editTextRes?editType=longText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=t001">
-						<span id="<%=Utils.getResKeyString(sitePage.getKey().getName(), "t001") %>"><%=Utils.getTextResFromMap(pageTextResMap, sitePage.getKey().getName(), "t001", "インターネット広告や紙媒体、モバイル端末向けの媒体販促ツールなどを含め広告にまつわるデザイン制作も請負い、プロモーションの全てを引き受け案件進行を行っております。 広告については成果検証を行い、クライアント様を必ずや成功に導くお手伝いをさせていただきます。") %></span>
+						<span id="<%=Utils.getResKeyString(sitePage.getKey().getName(), "t001") %>"><%=Utils.getResFromMap(pageTextResMap, sitePage.getKey().getName(), "t001", "インターネット広告や紙媒体、モバイル端末向けの媒体販促ツールなどを含め広告にまつわるデザイン制作も請負い、プロモーションの全てを引き受け案件進行を行っております。 広告については成果検証を行い、クライアント様を必ずや成功に導くお手伝いをさせていただきます。") %></span>
 					</a>
 					<%}else { %>
-					<%=Utils.getTextResFromMap(pageTextResMap, sitePage.getKey().getName(), "t001", "インターネット広告や紙媒体、モバイル端末向けの媒体販促ツールなどを含め広告にまつわるデザイン制作も請負い、プロモーションの全てを引き受け案件進行を行っております。 広告については成果検証を行い、クライアント様を必ずや成功に導くお手伝いをさせていただきます。") %>
+					<%=Utils.getResFromMap(pageTextResMap, sitePage.getKey().getName(), "t001", "インターネット広告や紙媒体、モバイル端末向けの媒体販促ツールなどを含め広告にまつわるデザイン制作も請負い、プロモーションの全てを引き受け案件進行を行っております。 広告については成果検証を行い、クライアント様を必ずや成功に導くお手伝いをさせていただきます。") %>
 					<%} %>
 				</p>
             </div>
@@ -136,10 +143,10 @@ HashMap<String,String> serviceListMap =(HashMap<String,String>) request.getAttri
 									data-target="#textResModal" 
 									style="color:#4e4e4e;"
 									href="/user/account/ajax/editTextRes?editType=shortText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=t001">
-									<span id="<%=Utils.getResKeyString(item.getKey().getName(), "t001") %>"><%=Utils.getTextResFromMap(serviceListMap, item.getKey().getName(), "t001", "サービス詳細") %></span>
+									<span id="<%=Utils.getResKeyString(item.getKey().getName(), "t001") %>"><%=Utils.getResFromMap(serviceListTextMap, item.getKey().getName(), "t001", "サービス詳細") %></span>
 								</a>
 								<%}else { %>
-								<span><%=Utils.getTextResFromMap(serviceListMap, item.getKey().getName(), "t001", "サービス詳細") %></span>
+								<span><%=Utils.getResFromMap(serviceListTextMap, item.getKey().getName(), "t001", "サービス詳細") %></span>
 								<%} %>
                             </h2>
                             <h3>
@@ -149,10 +156,10 @@ HashMap<String,String> serviceListMap =(HashMap<String,String>) request.getAttri
 									data-target="#textResModal" 
 									style="color:#787878;"
 									href="/user/account/ajax/editTextRes?editType=longText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=t002">
-									<span id="<%=Utils.getResKeyString(item.getKey().getName(), "t002") %>"><%=Utils.getTextResFromMap(serviceListMap, item.getKey().getName(), "t002", "サービスの簡易説明テキスト等入りますサービスの簡易説明テキスト等入ります") %></span>
+									<span id="<%=Utils.getResKeyString(item.getKey().getName(), "t002") %>"><%=Utils.getResFromMap(serviceListTextMap, item.getKey().getName(), "t002", "サービスの簡易説明テキスト等入りますサービスの簡易説明テキスト等入ります") %></span>
 								</a>
                             	<%}else { %>
-                            	<%=Utils.getTextResFromMap(serviceListMap, item.getKey().getName(), "t002", "サービスの簡易説明テキスト等入りますサービスの簡易説明テキスト等入ります") %>
+                            	<%=Utils.getResFromMap(serviceListTextMap, item.getKey().getName(), "t002", "サービスの簡易説明テキスト等入りますサービスの簡易説明テキスト等入ります") %>
                             	<%} %>
                             </h3>
                         </div>

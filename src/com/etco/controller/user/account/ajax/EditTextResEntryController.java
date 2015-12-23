@@ -51,6 +51,8 @@ public class EditTextResEntryController extends BaseController {
         v.add("parentKey", v.required());
         v.add("resId", v.required());
         
+        v.add("content", v.required());
+        
         return v.validate();
     }
 }

@@ -164,7 +164,7 @@ public class Utils {
      * @param defaultString
      * @return
      */
-    public static String getTextResFromMap(Map<String, String> map, String parentKey, String resId, String defaultString) { 
+    public static String getResFromMap(Map<String, String> map, String parentKey, String resId, String defaultString) { 
         if (map.containsKey(getResKeyString(parentKey, resId))){
             return map.get(getResKeyString(parentKey, resId));
         }

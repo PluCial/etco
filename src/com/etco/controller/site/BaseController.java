@@ -12,6 +12,7 @@ import com.etco.enums.PageRoleModel;
 import com.etco.exception.NoContentsException;
 import com.etco.exception.NoLoginException;
 import com.etco.exception.ObjectNotExistException;
+import com.etco.model.GcsRes;
 import com.etco.model.ListItem;
 import com.etco.model.SitePage;
 import com.etco.model.TextRes;
@@ -96,15 +97,21 @@ public abstract class BaseController extends AppBaseController {
                 for (TextRes res : itemTextResList) textResMap.put(res.getKey().getName(),res.getContentString());
             }
             
-            requestScope(listType + "Map", textResMap);
+            requestScope(listType + "TextMap", textResMap);
         }
         
 
         List<TextRes> pageTextResList = sitePage.getTextResListRef().getModelList();
         HashMap<String,String> pageTextResMap = new HashMap<String,String>();
         for (TextRes res : pageTextResList) pageTextResMap.put(res.getKey().getName(),res.getContentString());
-        System.out.println(pageTextResMap.toString());
         requestScope("pageTextResMap", pageTextResMap);
+        
+        List<GcsRes> pageGcsResList = sitePage.getGcsResListRef().getModelList();
+        HashMap<String,String> pageGcsResMap = new HashMap<String,String>();
+        for (GcsRes res : pageGcsResList) pageGcsResMap.put(res.getKey().getName(),res.getServingUrl());
+        requestScope("pageGcsResMap", pageGcsResMap);
+        
+        
     }
     
     /**

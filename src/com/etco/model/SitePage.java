@@ -11,6 +11,7 @@ import org.slim3.datastore.ModelRef;
 import org.slim3.datastore.ModificationDate;
 
 import com.etco.enums.Template;
+import com.etco.meta.GcsResMeta;
 import com.etco.meta.TextResMeta;
 import com.google.appengine.api.datastore.Key;
 
@@ -71,6 +72,14 @@ public class SitePage implements Serializable {
             new InverseModelListRef<TextRes, SitePage>(
                     TextRes.class,
                     TextResMeta.get().sitePageRef.getName(),
+                    this);
+    
+    /** TextResとの関連 */
+    @Attribute(persistent = false)
+    private InverseModelListRef<GcsRes, SitePage> gcsResListRef =
+            new InverseModelListRef<GcsRes, SitePage>(
+                    GcsRes.class,
+                    GcsResMeta.get().sitePageRef.getName(),
                     this);
 
     /**
@@ -203,5 +212,9 @@ public class SitePage implements Serializable {
 
     public InverseModelListRef<TextRes, SitePage> getTextResListRef() {
         return textResListRef;
+    }
+
+    public InverseModelListRef<GcsRes, SitePage> getGcsResListRef() {
+        return gcsResListRef;
     }
 }

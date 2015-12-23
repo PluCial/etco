@@ -12,7 +12,7 @@ import org.slim3.datastore.ModelRef;
 import org.slim3.datastore.ModificationDate;
 
 @Model(schemaVersion = 1)
-public class GcsResources implements Serializable {
+public class GcsRes implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -22,13 +22,24 @@ public class GcsResources implements Serializable {
     @Attribute(version = true)
     private Long version;
     
+    /**
+     * リソースタイプ
+     */
+    private String resId;
+    
+    @Attribute(unindexed = true)
+    private int size = 0;
+    
     /** 幅 */
+    @Attribute(unindexed = true)
     private int width = 0;
     
     /** 高さ */
+    @Attribute(unindexed = true)
     private int height = 0;
     
     /** コンテントタイプ */
+    @Attribute(unindexed = true)
     private String contentType;
     
     /** servingUrl */
@@ -40,6 +51,12 @@ public class GcsResources implements Serializable {
     // ----------------------------------------------------------------------
     /** Userとの関連 */
     private ModelRef<User> userRef = new ModelRef<User>(User.class);
+    
+    /** SitePageとの関連 */
+    private ModelRef<SitePage> sitePageRef = new ModelRef<SitePage>(SitePage.class);
+    
+    /** ListItemとの関連 */
+    private ModelRef<ListItem> listItemRef = new ModelRef<ListItem>(ListItem.class);
     
     // ----------------------------------------------------------------------
     // その他
@@ -113,7 +130,7 @@ public class GcsResources implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        GcsResources other = (GcsResources) obj;
+        GcsRes other = (GcsRes) obj;
         if (key == null) {
             if (other.key != null) {
                 return false;
@@ -174,5 +191,29 @@ public class GcsResources implements Serializable {
 
     public void setServingUrl(String servingUrl) {
         this.servingUrl = servingUrl;
+    }
+
+    public String getResId() {
+        return resId;
+    }
+
+    public void setResId(String resId) {
+        this.resId = resId;
+    }
+
+    public ModelRef<SitePage> getSitePageRef() {
+        return sitePageRef;
+    }
+
+    public ModelRef<ListItem> getListItemRef() {
+        return listItemRef;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
     }
 }
