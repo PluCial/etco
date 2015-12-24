@@ -6,7 +6,12 @@
 <%@ page import="com.etco.App" %>
 <%@ page import="com.etco.model.*" %>
 <%@ page import="com.etco.enums.*" %>
-
+<%@ page import="java.util.List" %>
+<%
+	User user =(User) request.getAttribute("user");
+boolean isEditMode = Boolean.valueOf((String) request.getAttribute("isEditMode"));
+List<SitePage> pageList =(List<SitePage>) request.getAttribute("pageList");
+%>
 	<footer id="footer" class="midnight-blue">
         <div class="container">
             <div class="row">
@@ -15,11 +20,15 @@
                 </div>
                 <div class="col-sm-6">
                     <ul class="pull-right">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="service.html">サービス</a></li>
-                        <li><a href="about.html">会社情報</a></li>
-                        <li><a href="news.html">お知らせ</a></li>
-                        <li><a href="contact.html">お問い合わせ</a></li>
+                        <%
+                    		for(SitePage sitePage: pageList) {
+                    	%>
+                    	<%if(sitePage.getRole().equals("index")) { %>
+                        <li><a href="/+<%=user.getSiteId() %>"><%=sitePage.getName() %></a></li>
+                        <%}else { %>
+                        <li><a href="/+<%=user.getSiteId() %>/<%=sitePage.getName() %>"><%=sitePage.getName() %></a></li>
+                        <%} %>
+                        <%} %>
                     </ul>
                 </div>
             </div>
