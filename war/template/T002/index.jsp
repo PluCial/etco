@@ -12,11 +12,11 @@
 <%
 SitePage sitePage = (SitePage) request.getAttribute("sitePage");
 boolean isEditMode = Boolean.valueOf((String) request.getAttribute("isEditMode"));
-List<ListItem> serviceList =(List<ListItem>) request.getAttribute(ListItemType.T001_001.toString() + "ItemList");
-List<ListItem> newsList =(List<ListItem>) request.getAttribute(ListItemType.T001_002.toString() + "ItemList");
+List<ListItem> serviceList =(List<ListItem>) request.getAttribute(ListItemType.T002_001.toString() + "ItemList");
+List<ListItem> newsList =(List<ListItem>) request.getAttribute(ListItemType.T002_002.toString() + "ItemList");
 HashMap<String,String> pageTextResMap =(HashMap<String,String>) request.getAttribute("pageTextResMap");
-HashMap<String,String> serviceListTextMap =(HashMap<String,String>) request.getAttribute(ListItemType.T001_001.toString() + "TextMap");
-HashMap<String,String> newsListTextMap =(HashMap<String,String>) request.getAttribute(ListItemType.T001_002.toString() + "TextMap");
+HashMap<String,String> serviceListTextMap =(HashMap<String,String>) request.getAttribute(ListItemType.T002_001.toString() + "TextMap");
+HashMap<String,String> newsListTextMap =(HashMap<String,String>) request.getAttribute(ListItemType.T002_002.toString() + "TextMap");
 HashMap<String,String> pageGcsResMap =(HashMap<String,String>) request.getAttribute("pageGcsResMap");
 
 SimpleDateFormat newsSdf = new SimpleDateFormat("yyyy'年'MM'月'dd'日' HH'時'mm'分'");
@@ -47,10 +47,10 @@ a.image-change {
             </ol> -->
             <div class="carousel-inner">
 
-                <div class="item active" style="background-image: url(<%=Utils.getResValue(pageGcsResMap, sitePage.getKey().getName(), GcsResIds.T001_INDEX_001) %>)">
+                <div class="item active" style="background-image: url(<%=Utils.getResValue(pageGcsResMap, sitePage.getKey().getName(), GcsResIds.T002_INDEX_001) %>)">
                 	<%if(isEditMode) { %>
 					<a  class="btn btn-default image-change"
-						href="/user/account/editGcsRes?objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=GcsResIds.T001_INDEX_001.toString()%>">
+						href="/user/account/editGcsRes?objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=GcsResIds.T002_INDEX_001.toString()%>">
 						画像の変更
 					</a>
 					<%}%>
@@ -65,11 +65,11 @@ a.image-change {
 											data-backdrop="static"
 											data-target="#textResModal" 
 											style="color: #fff;"
-											href="/user/account/ajax/editTextRes?editType=shortText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=TextResIds.T001_INDEX_001.toString()%>">
-											<span id="<%=Utils.getResKey(sitePage.getKey().getName(), TextResIds.T001_INDEX_001)%>"><%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T001_INDEX_001)%></span>
+											href="/user/account/ajax/editTextRes?editType=shortText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=TextResIds.T002_INDEX_001.toString()%>">
+											<span id="<%=Utils.getResKey(sitePage.getKey().getName(), TextResIds.T002_INDEX_001)%>"><%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T002_INDEX_001)%></span>
 										</a>
 					                	<%}else { %>
-					                	<%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T001_INDEX_001) %>
+					                	<%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T002_INDEX_001) %>
 					                	<%} %>
                                     </h1>
                                     <h2 class="animation animated-item-2">
@@ -78,11 +78,11 @@ a.image-change {
 											data-backdrop="static"
 											data-target="#textResModal" 
 											style="color: #fff;"
-											href="/user/account/ajax/editTextRes?editType=shortText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=TextResIds.T001_INDEX_002.toString()%>">
-											<span id="<%=Utils.getResKey(sitePage.getKey().getName(), TextResIds.T001_INDEX_002) %>"><%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T001_INDEX_002) %></span>
+											href="/user/account/ajax/editTextRes?editType=shortText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=TextResIds.T002_INDEX_002.toString()%>">
+											<span id="<%=Utils.getResKey(sitePage.getKey().getName(), TextResIds.T002_INDEX_002) %>"><%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T002_INDEX_002) %></span>
 										</a>
 					                	<%}else { %>
-					                	<%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T001_INDEX_002) %>
+					                	<%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T002_INDEX_002) %>
 					                	<%} %>
                                     </h2>
                                 </div>
@@ -117,11 +117,11 @@ a.image-change {
 						data-backdrop="static"
 						data-target="#textResModal" 
 						style="color: #4e4e4e;"
-						href="/user/account/ajax/editTextRes?editType=shortText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=TextResIds.T001_INDEX_003.toString()%>">
-						<span id="<%=Utils.getResKey(sitePage.getKey().getName(), TextResIds.T001_INDEX_003) %>"><%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T001_INDEX_003) %></span>
+						href="/user/account/ajax/editTextRes?editType=shortText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=TextResIds.T002_INDEX_003.toString()%>">
+						<span id="<%=Utils.getResKey(sitePage.getKey().getName(), TextResIds.T002_INDEX_003) %>"><%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T002_INDEX_003) %></span>
 					</a>
                 	<%}else { %>
-                	<%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T001_INDEX_003) %>
+                	<%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T002_INDEX_003) %>
                 	<%} %>
                 </h2>
                 
@@ -132,11 +132,11 @@ a.image-change {
 						data-target="#textResModal" 
 						class="lead"
 						style="color: #4e4e4e;"
-						href="/user/account/ajax/editTextRes?editType=longText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=TextResIds.T001_INDEX_004.toString()%>">
-						<span id="<%=Utils.getResKey(sitePage.getKey().getName(), TextResIds.T001_INDEX_004) %>"><%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T001_INDEX_004) %></span>
+						href="/user/account/ajax/editTextRes?editType=longText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=TextResIds.T002_INDEX_004.toString()%>">
+						<span id="<%=Utils.getResKey(sitePage.getKey().getName(), TextResIds.T002_INDEX_004) %>"><%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T002_INDEX_004) %></span>
 					</a>
 					<%}else { %>
-					<%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T001_INDEX_004) %>
+					<%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T002_INDEX_004) %>
 					<%} %>
 				</p>
             </div>
@@ -154,11 +154,11 @@ a.image-change {
 									data-backdrop="static"
 									data-target="#textResModal" 
 									style="color:#4e4e4e;"
-									href="/user/account/ajax/editTextRes?editType=shortText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=<%=TextResIds.T001_LIST_ITEM_TYPE001_001.toString()%>">
-									<span id="<%=Utils.getResKey(item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE001_001) %>"><%=Utils.getResValue(serviceListTextMap, item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE001_001) %></span>
+									href="/user/account/ajax/editTextRes?editType=shortText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=<%=TextResIds.T002_LIST_ITEM_TYPE001_001.toString()%>">
+									<span id="<%=Utils.getResKey(item.getKey().getName(), TextResIds.T002_LIST_ITEM_TYPE001_001) %>"><%=Utils.getResValue(serviceListTextMap, item.getKey().getName(), TextResIds.T002_LIST_ITEM_TYPE001_001) %></span>
 								</a>
 								<%}else { %>
-								<span><%=Utils.getResValue(serviceListTextMap, item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE001_001) %></span>
+								<span><%=Utils.getResValue(serviceListTextMap, item.getKey().getName(), TextResIds.T002_LIST_ITEM_TYPE001_001) %></span>
 								<%} %>
                             </h2>
                             <h3>
@@ -167,11 +167,11 @@ a.image-change {
 									data-backdrop="static"
 									data-target="#textResModal" 
 									style="color:#787878;"
-									href="/user/account/ajax/editTextRes?editType=longText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=<%=TextResIds.T001_LIST_ITEM_TYPE001_002.toString()%>">
-									<span id="<%=Utils.getResKey(item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE001_002) %>"><%=Utils.getResValue(serviceListTextMap, item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE001_002) %></span>
+									href="/user/account/ajax/editTextRes?editType=longText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=<%=TextResIds.T002_LIST_ITEM_TYPE001_002.toString()%>">
+									<span id="<%=Utils.getResKey(item.getKey().getName(), TextResIds.T002_LIST_ITEM_TYPE001_002) %>"><%=Utils.getResValue(serviceListTextMap, item.getKey().getName(), TextResIds.T002_LIST_ITEM_TYPE001_002) %></span>
 								</a>
                             	<%}else { %>
-                            	<%=Utils.getResValue(serviceListTextMap, item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE001_002) %>
+                            	<%=Utils.getResValue(serviceListTextMap, item.getKey().getName(), TextResIds.T002_LIST_ITEM_TYPE001_002) %>
                             	<%} %>
                             </h3>
                         </div>
@@ -183,7 +183,7 @@ a.image-change {
             
             <%if(isEditMode) { %>
             <div class="text-center">
-            	<a data-target="serviceListItem" href="/user/account/ajax/addListItemEntry?listType=<%=ListItemType.T001_001 %>" class="btn btn-default addListItem">追加</a>
+            	<a data-target="serviceListItem" href="/user/account/ajax/addListItemEntry?listType=<%=ListItemType.T002_001 %>" class="btn btn-default addListItem">追加</a>
             </div>
             <%} %>
             
@@ -204,18 +204,18 @@ a.image-change {
 											data-backdrop="static"
 											data-target="#textResModal" 
 											style="color: #4e4e4e;"
-											href="/user/account/ajax/editTextRes?editType=shortText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=TextResIds.T001_INDEX_005.toString()%>">
-											<span id="<%=Utils.getResKey(sitePage.getKey().getName(), TextResIds.T001_INDEX_005)%>"><%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T001_INDEX_005)%></span>
+											href="/user/account/ajax/editTextRes?editType=shortText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=TextResIds.T002_INDEX_005.toString()%>">
+											<span id="<%=Utils.getResKey(sitePage.getKey().getName(), TextResIds.T002_INDEX_005)%>"><%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T002_INDEX_005)%></span>
 										</a>
 					                	<%}else { %>
-					                	<%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T001_INDEX_005) %>
+					                	<%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T002_INDEX_005) %>
 					                	<%} %>
                             </h2>
                         </div>
                         
                         <%if(isEditMode) { %>
 						<div class="text-center" style="padding-bottom:30px">
-							<a data-target="newsListItem" data-insert-type="prepend" href="/user/account/ajax/addListItemEntry?listType=<%=ListItemType.T001_002 %>" class="btn btn-default addListItem">追加</a>
+							<a data-target="newsListItem" data-insert-type="prepend" href="/user/account/ajax/addListItemEntry?listType=<%=ListItemType.T002_002 %>" class="btn btn-default addListItem">追加</a>
 						</div>
 						<%} %>
                         
@@ -241,11 +241,11 @@ a.image-change {
 												data-backdrop="static"
 												data-target="#textResModal" 
 												style="color:#4e4e4e;"
-												href="/user/account/ajax/editTextRes?editType=shortText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=<%=TextResIds.T001_LIST_ITEM_TYPE002_001.toString()%>">
-												<span id="<%=Utils.getResKey(item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE002_001) %>"><%=Utils.getResValue(newsListTextMap, item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE002_001) %></span>
+												href="/user/account/ajax/editTextRes?editType=shortText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=<%=TextResIds.T002_LIST_ITEM_TYPE002_001.toString()%>">
+												<span id="<%=Utils.getResKey(item.getKey().getName(), TextResIds.T002_LIST_ITEM_TYPE002_001) %>"><%=Utils.getResValue(newsListTextMap, item.getKey().getName(), TextResIds.T002_LIST_ITEM_TYPE002_001) %></span>
 											</a>
 											<%}else { %>
-											<span><%=Utils.getResValue(newsListTextMap, item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE002_001) %></span>
+											<span><%=Utils.getResValue(newsListTextMap, item.getKey().getName(), TextResIds.T002_LIST_ITEM_TYPE002_001) %></span>
 											<%} %>
 										</h4>
 										<%if(isEditMode) { %>
@@ -253,11 +253,11 @@ a.image-change {
 												data-backdrop="static"
 												data-target="#textResModal" 
 												style="color:#858586;"
-												href="/user/account/ajax/editTextRes?editType=longText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=<%=TextResIds.T001_LIST_ITEM_TYPE002_002.toString()%>">
-												<span id="<%=Utils.getResKey(item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE002_002) %>"><%=Utils.getResValue(newsListTextMap, item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE002_002) %></span>
+												href="/user/account/ajax/editTextRes?editType=longText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=<%=TextResIds.T002_LIST_ITEM_TYPE002_002.toString()%>">
+												<span id="<%=Utils.getResKey(item.getKey().getName(), TextResIds.T002_LIST_ITEM_TYPE002_002) %>"><%=Utils.getResValue(newsListTextMap, item.getKey().getName(), TextResIds.T002_LIST_ITEM_TYPE002_002) %></span>
 											</a>
 											<%}else { %>
-											<span><%=Utils.getResValue(newsListTextMap, item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE002_002) %></span>
+											<span><%=Utils.getResValue(newsListTextMap, item.getKey().getName(), TextResIds.T002_LIST_ITEM_TYPE002_002) %></span>
 											<%} %>
 									</div>
 								</div>

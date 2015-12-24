@@ -16,8 +16,8 @@ ListItem item = (ListItem) request.getAttribute("listItem");
 									data-backdrop="static"
 									data-target="#textResModal" 
 									style="color:#4e4e4e;"
-									href="/user/account/ajax/editTextRes?editType=shortText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=<%=TextResIds.T001_LIST_ITEM_TYPE001_001.toString() %>">
-									<span id="<%=Utils.getResKey(item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE001_001) %>">サービス詳細</span>
+									href="/user/account/ajax/editTextRes?editType=shortText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=<%=TextResIds.T002_LIST_ITEM_TYPE003_001.toString() %>">
+									<span id="<%=Utils.getResKey(item.getKey().getName(), TextResIds.T002_LIST_ITEM_TYPE003_001) %>"><%=TextResIds.T002_LIST_ITEM_TYPE003_002.getDefaultValue() %></span>
 								</a>
                             </h2>
                             <h3>
@@ -25,8 +25,8 @@ ListItem item = (ListItem) request.getAttribute("listItem");
 									data-backdrop="static"
 									data-target="#textResModal" 
 									style="color:#787878;"
-									href="/user/account/ajax/editTextRes?editType=longText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=<%=TextResIds.T001_LIST_ITEM_TYPE001_002.toString() %>">
-									<span id="<%=Utils.getResKey(item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE001_002) %>">サービスの簡易説明テキスト等入りますサービスの簡易説明テキスト等入ります</span>
+									href="/user/account/ajax/editTextRes?editType=longText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=<%=TextResIds.T002_LIST_ITEM_TYPE003_002.toString() %>">
+									<span id="<%=Utils.getResKey(item.getKey().getName(), TextResIds.T002_LIST_ITEM_TYPE003_002) %>"><%=TextResIds.T002_LIST_ITEM_TYPE003_002.getDefaultValue() %></span>
 								</a>
                             </h3>
                         </div>

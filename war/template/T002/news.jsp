@@ -12,9 +12,9 @@
 <%
 SitePage sitePage = (SitePage) request.getAttribute("sitePage");
 boolean isEditMode = Boolean.valueOf((String) request.getAttribute("isEditMode"));
-List<ListItem> newsList =(List<ListItem>) request.getAttribute(ListItemType.T001_002.toString() + "ItemList");
+List<ListItem> newsList =(List<ListItem>) request.getAttribute(ListItemType.T002_002.toString() + "ItemList");
 HashMap<String,String> pageTextResMap =(HashMap<String,String>) request.getAttribute("pageTextResMap");
-HashMap<String,String> newsListTextMap =(HashMap<String,String>) request.getAttribute(ListItemType.T001_002.toString() + "TextMap");
+HashMap<String,String> newsListTextMap =(HashMap<String,String>) request.getAttribute(ListItemType.T002_002.toString() + "TextMap");
 
 SimpleDateFormat newsSdf = new SimpleDateFormat("yyyy'年'MM'月'dd'日' HH'時'mm'分'");
 %>
@@ -36,18 +36,18 @@ SimpleDateFormat newsSdf = new SimpleDateFormat("yyyy'年'MM'月'dd'日' HH'時'
 					data-backdrop="static"
 					data-target="#textResModal" 
 					style="color: #4e4e4e;"
-					href="/user/account/ajax/editTextRes?editType=shortText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=TextResIds.T001_NEWS_001.toString()%>">
-					<span id="<%=Utils.getResKey(sitePage.getKey().getName(), TextResIds.T001_NEWS_001)%>"><%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T001_NEWS_001)%></span>
+					href="/user/account/ajax/editTextRes?editType=shortText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=TextResIds.T002_NEWS_001.toString()%>">
+					<span id="<%=Utils.getResKey(sitePage.getKey().getName(), TextResIds.T002_NEWS_001)%>"><%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T002_NEWS_001)%></span>
 				</a>
 				<%}else { %>
-					<%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T001_NEWS_001) %>
+					<%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T002_NEWS_001) %>
 				<%} %>
             </h2>
         </div>
         
         <%if(isEditMode) { %>
 		<div class="text-center" style="padding-bottom:30px">
-			<a data-target="newsListItem" data-insert-type="prepend" href="/user/account/ajax/addListItemEntry?listType=<%=ListItemType.T001_002 %>" class="btn btn-default addListItem">追加</a>
+			<a data-target="newsListItem" data-insert-type="prepend" href="/user/account/ajax/addListItemEntry?listType=<%=ListItemType.T002_002 %>" class="btn btn-default addListItem">追加</a>
 		</div>
 		<%} %>
 
@@ -77,11 +77,11 @@ SimpleDateFormat newsSdf = new SimpleDateFormat("yyyy'年'MM'月'dd'日' HH'時'
 												data-backdrop="static"
 												data-target="#textResModal" 
 												style="color:#4e4e4e;"
-												href="/user/account/ajax/editTextRes?editType=shortText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=<%=TextResIds.T001_LIST_ITEM_TYPE002_001.toString()%>">
-												<span id="<%=Utils.getResKey(item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE002_001) %>"><%=Utils.getResValue(newsListTextMap, item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE002_001) %></span>
+												href="/user/account/ajax/editTextRes?editType=shortText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=<%=TextResIds.T002_LIST_ITEM_TYPE002_001.toString()%>">
+												<span id="<%=Utils.getResKey(item.getKey().getName(), TextResIds.T002_LIST_ITEM_TYPE002_001) %>"><%=Utils.getResValue(newsListTextMap, item.getKey().getName(), TextResIds.T002_LIST_ITEM_TYPE002_001) %></span>
 											</a>
 											<%}else { %>
-											<span><%=Utils.getResValue(newsListTextMap, item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE002_001) %></span>
+											<span><%=Utils.getResValue(newsListTextMap, item.getKey().getName(), TextResIds.T002_LIST_ITEM_TYPE002_001) %></span>
 											<%} %>
 										</h4>
 										<%if(isEditMode) { %>
@@ -89,11 +89,11 @@ SimpleDateFormat newsSdf = new SimpleDateFormat("yyyy'年'MM'月'dd'日' HH'時'
 												data-backdrop="static"
 												data-target="#textResModal" 
 												style="color:#858586;"
-												href="/user/account/ajax/editTextRes?editType=longText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=<%=TextResIds.T001_LIST_ITEM_TYPE002_002.toString()%>">
-												<span id="<%=Utils.getResKey(item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE002_002) %>"><%=Utils.getResValue(newsListTextMap, item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE002_002) %></span>
+												href="/user/account/ajax/editTextRes?editType=longText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=<%=TextResIds.T002_LIST_ITEM_TYPE002_002.toString()%>">
+												<span id="<%=Utils.getResKey(item.getKey().getName(), TextResIds.T002_LIST_ITEM_TYPE002_002) %>"><%=Utils.getResValue(newsListTextMap, item.getKey().getName(), TextResIds.T002_LIST_ITEM_TYPE002_002) %></span>
 											</a>
 											<%}else { %>
-											<span><%=Utils.getResValue(newsListTextMap, item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE002_002) %></span>
+											<span><%=Utils.getResValue(newsListTextMap, item.getKey().getName(), TextResIds.T002_LIST_ITEM_TYPE002_002) %></span>
 											<%} %>
 									</div>
 								</div>

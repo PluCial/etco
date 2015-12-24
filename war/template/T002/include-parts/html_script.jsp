@@ -9,5 +9,6 @@
     <script src="/template/T002/js/jquery.isotope.min.js"></script>
     <script src="/template/T002/js/main.js"></script>
     <script src="/template/T002/js/wow.min.js"></script>
+    
     <script src="/plugins/waiting-dialog/waiting-dialog.js"></script>
     <script src="/template/common/addListItem.js"></script>

@@ -33,30 +33,30 @@ HashMap<String,String> pageGcsResMap =(HashMap<String,String>) request.getAttrib
     <section id="contact-info">
         <div class="center wow fadeInDown">                
             <h2>
-            <%if(isEditMode) { %>
-			<a data-toggle="modal" 
-				data-backdrop="static"
-				data-target="#textResModal" 
-				style="color: #4e4e4e;"
-				href="/user/account/ajax/editTextRes?editType=shortText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=TextResIds.T001_CONTACT_001.toString()%>">
-				<span id="<%=Utils.getResKey(sitePage.getKey().getName(), TextResIds.T001_CONTACT_001) %>"><%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T001_CONTACT_001) %></span>
-			</a>
-			<%}else { %>
-			<%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T001_CONTACT_001) %>
-			<%} %>
+	            <%if(isEditMode) { %>
+				<a data-toggle="modal" 
+					data-backdrop="static"
+					data-target="#textResModal" 
+					style="color: #4e4e4e;"
+					href="/user/account/ajax/editTextRes?editType=shortText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=TextResIds.T002_CONTACT_001.toString()%>">
+					<span id="<%=Utils.getResKey(sitePage.getKey().getName(), TextResIds.T002_CONTACT_001) %>"><%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T002_CONTACT_001) %></span>
+				</a>
+				<%}else { %>
+				<%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T002_CONTACT_001) %>
+				<%} %>
             </h2>
             <p class="lead">
-            <%if(isEditMode) { %>
-			<a data-toggle="modal" 
-				data-backdrop="static"
-				data-target="#textResModal" 
-				style="color: #4e4e4e;"
-				href="/user/account/ajax/editTextRes?editType=shortText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=TextResIds.T001_CONTACT_002.toString()%>">
-				<span id="<%=Utils.getResKey(sitePage.getKey().getName(), TextResIds.T001_CONTACT_002) %>"><%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T001_CONTACT_002) %></span>
-			</a>
-			<%}else { %>
-			<%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T001_CONTACT_002) %>
-			<%} %>
+	            <%if(isEditMode) { %>
+				<a data-toggle="modal" 
+					data-backdrop="static"
+					data-target="#textResModal" 
+					style="color: #4e4e4e;"
+					href="/user/account/ajax/editTextRes?editType=shortText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=TextResIds.T002_CONTACT_002.toString()%>">
+					<span id="<%=Utils.getResKey(sitePage.getKey().getName(), TextResIds.T002_CONTACT_002) %>"><%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T002_CONTACT_002) %></span>
+				</a>
+				<%}else { %>
+				<%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T002_CONTACT_002) %>
+				<%} %>
             </p>
         </div>
 
@@ -84,7 +84,7 @@ HashMap<String,String> pageGcsResMap =(HashMap<String,String>) request.getAttrib
                             <%if (errors.containsKey("phoneNumber")){ %>
 								<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> ${errors.phoneNumber}</label>
 							<%} %>
-                            <input type="number" name="phoneNumber" class="form-control">
+                            <input type="tel" name="phoneNumber" class="form-control" required="required">
                         </div>
                         <div class="form-group has-feedback ${f:errorClass('companyName','has-error')}">
                             <label>会社名</label>

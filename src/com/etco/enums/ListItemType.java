@@ -15,7 +15,12 @@ import com.etco.meta.SitePageMeta;
 public enum ListItemType {
     T001_001(SitePageMeta.get().sortOrder.asc, SitePageMeta.get().createDate.asc)
     ,T001_002(SitePageMeta.get().createDate.desc)
-    ,T001_003(SitePageMeta.get().sortOrder.asc, SitePageMeta.get().createDate.asc);
+    ,T001_003(SitePageMeta.get().sortOrder.asc, SitePageMeta.get().createDate.asc)
+    
+    // テンプレート２
+    ,T002_001(SitePageMeta.get().sortOrder.asc, SitePageMeta.get().createDate.asc)
+    ,T002_002(SitePageMeta.get().createDate.desc)
+    ,T002_003(SitePageMeta.get().sortOrder.asc, SitePageMeta.get().createDate.asc);
     
     private SortCriterion[] sortCriterion;
 

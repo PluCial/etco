@@ -27,8 +27,8 @@ SimpleDateFormat newsSdf = new SimpleDateFormat("yyyy'年'MM'月'dd'日' HH'時'
 												data-backdrop="static"
 												data-target="#textResModal" 
 												style="color:#4e4e4e;"
-												href="/user/account/ajax/editTextRes?editType=shortText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=<%=TextResIds.T001_LIST_ITEM_TYPE002_001.toString()%>">
-												<span id="<%=Utils.getResKey(item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE002_001) %>"><%=TextResIds.T001_LIST_ITEM_TYPE002_001.getDefaultValue() %></span>
+												href="/user/account/ajax/editTextRes?editType=shortText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=<%=TextResIds.T002_LIST_ITEM_TYPE002_001.toString()%>">
+												<span id="<%=Utils.getResKey(item.getKey().getName(), TextResIds.T002_LIST_ITEM_TYPE002_001) %>"><%=TextResIds.T002_LIST_ITEM_TYPE002_001.getDefaultValue() %></span>
 											</a>
 										</h4>
 										
@@ -36,8 +36,8 @@ SimpleDateFormat newsSdf = new SimpleDateFormat("yyyy'年'MM'月'dd'日' HH'時'
 												data-backdrop="static"
 												data-target="#textResModal" 
 												style="color:#858586;"
-												href="/user/account/ajax/editTextRes?editType=longText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=<%=TextResIds.T001_LIST_ITEM_TYPE002_002.toString()%>">
-												<span id="<%=Utils.getResKey(item.getKey().getName(), TextResIds.T001_LIST_ITEM_TYPE002_002) %>"><%=TextResIds.T001_LIST_ITEM_TYPE002_002.getDefaultValue() %></span>
+												href="/user/account/ajax/editTextRes?editType=longText&objectType=listItem&parentKey=<%=item.getKey().getName() %>&resId=<%=TextResIds.T002_LIST_ITEM_TYPE002_002.toString()%>">
+												<span id="<%=Utils.getResKey(item.getKey().getName(), TextResIds.T002_LIST_ITEM_TYPE002_002) %>"><%=TextResIds.T002_LIST_ITEM_TYPE002_002.getDefaultValue() %></span>
 											</a>
 											
 									</div>

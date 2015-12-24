@@ -41,11 +41,11 @@ a.image-change {
 					data-backdrop="static"
 					data-target="#textResModal" 
 					style="color: #4e4e4e;"
-					href="/user/account/ajax/editTextRes?editType=shortText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=TextResIds.T001_ABOUT_001.toString()%>">
-					<span id="<%=Utils.getResKey(sitePage.getKey().getName(), TextResIds.T001_ABOUT_001)%>"><%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T001_ABOUT_001)%></span>
+					href="/user/account/ajax/editTextRes?editType=shortText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=TextResIds.T002_ABOUT_001.toString()%>">
+					<span id="<%=Utils.getResKey(sitePage.getKey().getName(), TextResIds.T002_ABOUT_001)%>"><%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T002_ABOUT_001)%></span>
 				</a>
 				<%}else { %>
-					<%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T001_ABOUT_001) %>
+					<%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T002_ABOUT_001) %>
 				<%} %>
 				</h2>
 			</div>
@@ -62,10 +62,10 @@ a.image-change {
 
 					<div class="carousel-inner">
 						<div class="item active">
-							<img src="<%=Utils.getResValue(pageGcsResMap, sitePage.getKey().getName(), GcsResIds.T001_ABOUT_002) %>" class="img-responsive" alt="">
+							<img src="<%=Utils.getResValue(pageGcsResMap, sitePage.getKey().getName(), GcsResIds.T002_ABOUT_002) %>" class="img-responsive" alt="">
 							<%if(isEditMode) { %>
 							<a  class="btn btn-default image-change"
-								href="/user/account/editGcsRes?objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=GcsResIds.T001_ABOUT_002.toString()%>">
+								href="/user/account/editGcsRes?objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=GcsResIds.T002_ABOUT_002.toString()%>">
 								画像の変更
 							</a>
 							<%}%>
@@ -106,11 +106,11 @@ a.image-change {
 										data-backdrop="static"
 										data-target="#textResModal" 
 										style="color: #4e4e4e;"
-										href="/user/account/ajax/editTextRes?editType=shortText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=TextResIds.T001_ABOUT_002.toString()%>">
-										<span id="<%=Utils.getResKey(sitePage.getKey().getName(), TextResIds.T001_ABOUT_002)%>"><%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T001_ABOUT_002)%></span>
+										href="/user/account/ajax/editTextRes?editType=shortText&objectType=page&parentKey=<%=sitePage.getKey().getName() %>&resId=<%=TextResIds.T002_ABOUT_002.toString()%>">
+										<span id="<%=Utils.getResKey(sitePage.getKey().getName(), TextResIds.T002_ABOUT_002)%>"><%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T002_ABOUT_002)%></span>
 									</a>
 									<%}else { %>
-									<%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T001_ABOUT_002) %>
+									<%=Utils.getResValue(pageTextResMap, sitePage.getKey().getName(), TextResIds.T002_ABOUT_002) %>
 									<%} %>
                                     </h5>
                                     <p>〒160-0004<br>東京都新宿区四谷4-3-3 FUKUYAビル2F-A</p>

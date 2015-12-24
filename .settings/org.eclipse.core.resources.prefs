@@ -1,5 +1,10 @@
 eclipse.preferences.version=1
 encoding//war/admin/index.jsp=UTF-8
+encoding//war/template/T001/about.jsp=UTF-8
+encoding//war/template/T001/contact.jsp=UTF-8
+encoding//war/template/T001/index.jsp=UTF-8
+encoding//war/template/T001/news.jsp=UTF-8
+encoding//war/template/T001/service.jsp=UTF-8
 encoding//war/template/T002/about.jsp=UTF-8
 encoding//war/template/T002/contact.jsp=UTF-8
 encoding//war/template/T002/index.jsp=UTF-8
